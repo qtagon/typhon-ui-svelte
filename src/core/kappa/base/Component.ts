@@ -10,6 +10,7 @@ export class Component implements Element {
   alignment: ALIGNMENT;
   position: POSITION;
   size: SIZE = SIZE.NONE;
+  url: string;
 
   constructor(identifier: string = '') {
     this.identifier = identifier || Helper.guid();

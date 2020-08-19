@@ -28,4 +28,5 @@ export interface Element {
   alignment: ALIGNMENT;
   position: POSITION;
   size: SIZE;
+  url: string;
 }

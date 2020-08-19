@@ -11,6 +11,7 @@ export class Row implements Element {
   alignment: ALIGNMENT;
   position: POSITION;
   size: SIZE = SIZE.NONE;
+  url: string;
 
   protected containers: Array<Container>;
   private icontainers: Map<string, Container>;
@@ -24,6 +25,10 @@ export class Row implements Element {
     this.position = POSITION.HORIZONTAL;
     this.containers = [];
     this.icontainers = new Map();
+  }
+
+  public getContainers(): Array<Container> {
+    return this.containers;
   }
 
   public setContainer(identifier: string = ''): Container {

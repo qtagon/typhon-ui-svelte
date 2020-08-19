@@ -12,6 +12,7 @@ export class Container implements Element {
   alignment: ALIGNMENT;
   position: POSITION;
   size: SIZE = SIZE.NONE;
+  url: string;
 
   protected components: Array<Component>;
   private icomponents: Map<string, Component>;
@@ -31,10 +32,14 @@ export class Container implements Element {
     this.icomponents = new Map();
   }
 
-  public setMedia(identifier: string = ''): Media {
-    const media = new Media(identifier);
+  public getComponents(): Array<Component> {
+    return this.components;
+  }
+
+  public setMedia(title: string = '', subtitle: string = ''): Media {
+    const media = new Media(title, subtitle);
     this.components.push(media);
-    this.icomponents.set(identifier, media);
+    this.icomponents.set(media.identifier, media);
     return media;
   }
 }

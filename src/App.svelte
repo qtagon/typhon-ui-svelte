@@ -1,17 +1,39 @@
 <script lang="ts">
-  import Kappa, { Component } from './core/kappa';
+  /**
+   * Components
+   */
+  import Media from './core/components/Media.svelte';
+
+  const components = {
+    media: Media,
+  };
+
+  console.log(components['Media']);
+
+  import Kappa, { Component, SIZE } from './core/kappa';
 
   const dynamic = new Kappa('ui')
     .setRow('menu')
     .setRow('profile')
     .setRow('content');
-  dynamic.onRow('menu').setContainer('options').setMedia();
+
+  const container = dynamic.onRow('menu').setContainer('options');
+  const mediax = container.setMedia('Logan Nesser', '@louisaingram');
+
+  mediax
+    .setImage(
+      'https://static.dribbble.com/users/5976/screenshots/14046921/media/d3ae8455079e0d0031c594563c54878a.png',
+      SIZE.SMALL
+    )
+    .setClassified('x');
+
+  mediax.setAction('Add').setIcon('check');
+  mediax.setAction('Add').setIcon('check');
+
   dynamic.onRow('profile').setContainer('account');
   dynamic.onRow('content').setContainer('products');
 
-  console.log(dynamic);
-
-  export let name: string;
+  console.log(JSON.stringify(dynamic, null, '    '));
 </script>
 
 <style>
@@ -21,27 +43,20 @@
     max-width: 240px;
     margin: 0 auto;
   }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
 </style>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <span>{JSON.stringify(dynamic)}</span>
-  <p>
-    Visit the
-    <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
-    to learn how to build Svelte apps.
-  </p>
+  {#each dynamic.getRows() as row, i}
+    <div class="row">
+      {#each row.getContainers() as container}
+        <div class="container">
+          {#each container.getComponents() as component}
+            <svelte:component
+              this={components[component.type]}
+              {...component} />
+          {/each}
+        </div>
+      {/each}
+    </div>
+  {/each}
 </main>

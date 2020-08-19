@@ -1,7 +1,8 @@
 import { Row } from './base/Row';
 import { Component } from './base/Component';
+import { SIZE } from './interfaces/index';
 
-export { Row, Component };
+export { Row, Component, SIZE };
 
 /**
  * Main generator
@@ -15,6 +16,10 @@ class Kappa {
     this.title = title;
     this.rows = [];
     this.irows = new Map();
+  }
+
+  public getRows(): Array<Row> {
+    return this.rows;
   }
 
   public setRow(identifier: string = ''): this {
