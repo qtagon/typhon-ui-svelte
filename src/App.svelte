@@ -3,9 +3,11 @@
    * Components
    */
   import Media from './core/components/Media.svelte';
+  import Card from './core/components/Card.svelte';
 
   const components = {
     media: Media,
+    card: Card,
   };
 
   console.log(components['Media']);
@@ -18,19 +20,39 @@
     .setRow('content');
 
   const container = dynamic.onRow('menu').setContainer('options');
-  const mediax = container.setMedia('Logan Nesser', '@louisaingram');
-
-  mediax
+  const media = container.setMedia('Logan Nesser', '@louisaingram');
+  media.setAction('Add').setIcon('check');
+  media
     .setImage(
-      'https://static.dribbble.com/users/5976/screenshots/14046921/media/d3ae8455079e0d0031c594563c54878a.png',
+      'https://images.pexels.com/photos/5060987/pexels-photo-5060987.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
       SIZE.SMALL
     )
+    .setTitle('oooo')
     .setClassified('x');
 
-  mediax.setAction('Add').setIcon('check');
-  mediax.setAction('Add').setIcon('check');
+  const card = dynamic
+    .onRow('profile')
+    .setContainer('account')
+    .setCard('Logan Nesser', '@louisaingram');
 
-  dynamic.onRow('profile').setContainer('account');
+  card
+    .setImage(
+      'https://images.pexels.com/photos/3954401/pexels-photo-3954401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+    )
+    .setTitle('cotton');
+
+  card
+    .setMedia('Cottonbro', '@cotton')
+    .setImage(
+      'https://images.pexels.com/photos/4153141/pexels-photo-4153141.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      SIZE.SMALL
+    )
+    .setTitle('cotton');
+
+  card.setAction('326').setIcon('heart');
+  card.setAction('148').setIcon('comment');
+  card.setAction('Share').setIcon('share');
+
   dynamic.onRow('content').setContainer('products');
 
   console.log(JSON.stringify(dynamic, null, '    '));
@@ -38,10 +60,7 @@
 
 <style>
   main {
-    text-align: center;
     padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
   }
 </style>
 

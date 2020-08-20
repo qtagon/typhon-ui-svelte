@@ -6,6 +6,7 @@ export class Component implements Element {
   type: string = 'component';
   title: string;
   subtitle: string;
+  description: string;
   classified: string;
   alignment: ALIGNMENT;
   position: POSITION;
@@ -17,6 +18,7 @@ export class Component implements Element {
     this.title = '';
     this.subtitle = '';
     this.classified = '';
+    this.description = '';
     this.alignment = ALIGNMENT.LEFT;
     this.position = POSITION.HORIZONTAL;
   }

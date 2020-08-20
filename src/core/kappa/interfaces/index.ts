@@ -24,6 +24,7 @@ export interface Element {
   type: string;
   title: string;
   subtitle: string;
+  description: string;
   classified: string;
   alignment: ALIGNMENT;
   position: POSITION;

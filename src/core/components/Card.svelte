@@ -1,18 +1,24 @@
 <script lang="ts">
   import type { Image } from '../kappa/components/Image';
   import type { Action } from '../kappa/components/Action';
+  import type { Media } from '../kappa/components/Media';
 
   /**
    * Components
    */
   import caction from './Action.svelte';
+  import cmedia from './Media.svelte';
+  import cimage from './Image.svelte';
   const components = {
     action: caction,
+    media: cmedia,
+    image: cimage,
   };
 
   export let title: string = '';
   export let subtitle: string = '';
   export let image: Image;
+  export let media: Media;
   export let actions: Array<Action> = [];
 </script>
 
@@ -30,20 +36,29 @@
     }
   }
 
-  .media {
+  .card {
     display: flex;
+    flex-direction: column;
+
+    & > :global(div.image) {
+      margin: 1.125rem 0;
+    }
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    margin: 0 0.938rem;
     flex: 1;
     justify-content: center;
+
+    & > :last-child {
+      margin: 0.5rem 0 0 0;
+    }
   }
 
   .image {
     display: flex;
+
     & > a {
       display: flex;
     }
@@ -51,8 +66,8 @@
 
   .actions {
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin: 1.125rem 0 0 0;
 
     & > :global(button:not(:last-child)) {
       margin: 0 0.938rem 0 0;
@@ -60,18 +75,12 @@
   }
 </style>
 
-<div class="media">
+<div class="card">
+  {#if media}
+    <svelte:component this={components.media} {...media} />
+  {/if}
   {#if image}
-    <div class="image">
-      <a href={image.url} target="_blank">
-        <img
-          src={image.url}
-          alt={image.title}
-          class={`${image.classified} ${image.size}`}
-          aria-label={image.title}
-          rel="noopener noreferrer" />
-      </a>
-    </div>
+    <svelte:component this={components.image} {...image} />
   {/if}
   <div class="content">
     <div class="h3">{title}</div>

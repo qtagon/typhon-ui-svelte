@@ -14,4 +14,9 @@ export class Image extends Component {
     this.classified = classified;
     return this;
   }
+
+  public setTitle(title: string): this {
+    this.title = title;
+    return this;
+  }
 }

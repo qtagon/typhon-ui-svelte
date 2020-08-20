@@ -7,6 +7,7 @@ export class Row implements Element {
   type: string = 'row';
   title: string;
   subtitle: string;
+  description: string;
   classified: string;
   alignment: ALIGNMENT;
   position: POSITION;
@@ -20,6 +21,7 @@ export class Row implements Element {
     this.identifier = identifier || Helper.guid();
     this.title = '';
     this.subtitle = '';
+    this.description = '';
     this.classified = '';
     this.alignment = ALIGNMENT.LEFT;
     this.position = POSITION.HORIZONTAL;
