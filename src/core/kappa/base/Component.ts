@@ -12,6 +12,7 @@ export class Component implements Element {
   position: POSITION;
   size: SIZE = SIZE.NONE;
   url: string;
+  style: string;
 
   constructor(identifier: string = '') {
     this.identifier = identifier || Helper.guid();
@@ -21,5 +22,26 @@ export class Component implements Element {
     this.description = '';
     this.alignment = ALIGNMENT.LEFT;
     this.position = POSITION.HORIZONTAL;
+    this.style = '';
+  }
+
+  public setAlignment(alignment: ALIGNMENT = ALIGNMENT.NONE): this {
+    this.alignment = alignment;
+    return this;
+  }
+
+  public setStyle(style: string = ''): this {
+    this.style = style;
+    return this;
+  }
+
+  public setClassified(classified: string): this {
+    this.classified = classified;
+    return this;
+  }
+
+  public setTitle(title: string): this {
+    this.title = title;
+    return this;
   }
 }

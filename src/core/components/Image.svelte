@@ -1,48 +1,43 @@
 <script lang="ts">
   import type { Image } from '../kappa/components/Image';
   import type { Action } from '../kappa/components/Action';
-  import type { SIZE } from '../kappa/interfaces/index';
+  import { SIZE, ALIGNMENT } from '../kappa/interfaces/index';
 
   export let url: string = '';
   export let title: string = '';
-  export let size: SIZE;
+  export let size: SIZE = SIZE.NONE;
   export let classified: string = '';
+  export let alignment: ALIGNMENT = ALIGNMENT.NONE;
 </script>
 
 <style type="text/scss">
+  @import './scss/size.scss';
+  @import './scss/alignment.scss';
+
   img {
     object-fit: cover;
     object-position: top;
     border-radius: 0.5rem;
-    width: 100%;
-    height: 100%;
-
-    &.sm {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 0.75rem;
-    }
   }
 
   .image {
     display: flex;
     border-radius: 0.5rem;
+    margin: 0;
 
     & > a {
-      width: 100%;
-      height: 100%;
       display: flex;
     }
   }
 </style>
 
-<div class="image">
-  <a href={url} target="_blank">
-    <img
-      src={url}
-      alt={title}
-      class={`${classified} ${size}`}
-      aria-label={title}
-      rel="noopener noreferrer" />
+<div class={`image ${size} ${alignment}`}>
+  <a
+    href={url}
+    class={`${size}`}
+    target="_blank"
+    aria-label={title}
+    rel="noopener noreferrer">
+    <img src={url} alt={title} class={`${classified} ${size}`} />
   </a>
 </div>

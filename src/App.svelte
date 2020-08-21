@@ -1,67 +1,72 @@
 <script lang="ts">
+  import Kappa, { SIZE, ALIGNMENT } from './core/kappa';
   /**
    * Components
    */
   import Media from './core/components/Media.svelte';
   import Card from './core/components/Card.svelte';
+  import Action from './core/components/Action.svelte';
+  import Image from './core/components/Image.svelte';
+  import Notification from './core/components/Notification.svelte';
 
   const components = {
     media: Media,
     card: Card,
+    action: Action,
+    image: Image,
+    notification: Notification,
   };
 
-  console.log(components['Media']);
+  const dynamic = new Kappa('ui').setRow('content');
+  const container = dynamic.onRow('content').setContainer('products');
 
-  import Kappa, { Component, SIZE } from './core/kappa';
+  const notification = container.setNotification(
+    'Marriet Miles',
+    'sent you a friend request',
+    '4min'
+  );
 
-  const dynamic = new Kappa('ui')
-    .setRow('menu')
-    .setRow('profile')
-    .setRow('content');
+  notification.setAction('').setClassified('primary').setIcon('addUser');
+  notification.setButton('Add').setClassified('success').setIcon('check');
+  notification
+    .setButton('Ignore')
+    .setClassified('transparent black')
+    .setIcon('close');
+  notification
+    .setIndicator()
+    .setStyle('margin-top: 0.625rem;')
+    .setAlignment(ALIGNMENT.TOP);
 
-  const container = dynamic.onRow('menu').setContainer('options');
-  const media = container.setMedia('Logan Nesser', '@louisaingram');
-  media.setAction('Add').setIcon('check');
-  media
+  notification
     .setImage(
-      'https://images.pexels.com/photos/5060987/pexels-photo-5060987.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      SIZE.SMALL
+      'https://images.pexels.com/photos/4845272/pexels-photo-4845272.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      SIZE.EXTRA_SMALL_X2
     )
-    .setTitle('oooo')
-    .setClassified('x');
+    .setAlignment(ALIGNMENT.TOP);
 
-  const card = dynamic
-    .onRow('profile')
-    .setContainer('account')
-    .setCard('Logan Nesser', '@louisaingram');
+  const notificationx = container.setNotification(
+    'Allie X',
+    'sent you a friend request',
+    'Feb 18, 2018'
+  );
 
-  card
+  notificationx.setAction('').setClassified('primary').setIcon('addUser');
+  notificationx.setButton('Added').setClassified('dark').setIcon('close');
+  notificationx
+    .setIndicator()
+    .setStyle('margin-top: 0.9375rem;')
+    .setAlignment(ALIGNMENT.TOP);
+
+  notificationx
     .setImage(
-      'https://images.pexels.com/photos/3954401/pexels-photo-3954401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+      'https://images.pexels.com/photos/4294972/pexels-photo-4294972.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      SIZE.EXTRA_SMALL
     )
-    .setTitle('cotton');
-
-  card
-    .setMedia('Cottonbro', '@cotton')
-    .setImage(
-      'https://images.pexels.com/photos/4153141/pexels-photo-4153141.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      SIZE.SMALL
-    )
-    .setTitle('cotton');
-
-  card.setAction('326').setIcon('heart');
-  card.setAction('148').setIcon('comment');
-  card.setAction('Share').setIcon('share');
-
-  dynamic.onRow('content').setContainer('products');
-
-  console.log(JSON.stringify(dynamic, null, '    '));
+    .setAlignment(ALIGNMENT.TOP);
 </script>
 
-<style>
-  main {
-    padding: 1em;
-  }
+<style type="text/scss">
+
 </style>
 
 <main>

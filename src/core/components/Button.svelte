@@ -10,7 +10,6 @@
   };
 
   export let title: string = '';
-  export let url: string = '';
   export let classified: string = '';
   export let icon: Icon;
 
@@ -21,15 +20,10 @@
   @import './scss/button.scss';
 </style>
 
-<a
-  class={`button ${classified} ${untitled} display`}
-  href={url}
-  name={title}
-  aria-label={title}
-  rel="noopener noreferrer">
+<button class={`${classified} ${untitled} display`} name={title} type="button">
   {#if icon}
     <svelte:component this={components.icon} {...icon} />
     {#if title}&nbsp;{/if}
   {/if}
   {title}
-</a>
+</button>

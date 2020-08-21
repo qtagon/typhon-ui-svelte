@@ -1,0 +1,73 @@
+button,
+.button {
+  background: #0659fd;
+
+  &:active,
+  &:hover,
+  &:focus {
+    background: transparentize($color: #0659fd, $amount: 0.1);
+  }
+
+  mix-blend-mode: normal;
+  border-radius: 0.25rem;
+  text-align: center;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.313rem 0.614rem;
+
+  & > :global(svg > path) {
+    fill: #ffffff;
+  }
+
+  &.untitled {
+    border-radius: 0.75rem;
+    padding: 0.625em;
+  }
+
+  &.transparent {
+    background: transparent;
+    color: #1e1f20;
+
+    & > :global(svg > path) {
+      fill: #1e1f20;
+    }
+
+    &.white {
+      background: transparentize($color: #ffffff, $amount: 0.8);
+      & > :global(svg > path) {
+        fill: #ffffff;
+      }
+    }
+
+    &.black {
+      background: transparentize($color: #1e1f20, $amount: 0.8);
+      color: #ffffff;
+
+      & > :global(svg > path) {
+        fill: #ffffff;
+      }
+    }
+  }
+
+  &.success {
+    background: #53d769;
+
+    &:hover {
+      background: transparentize($color: #53d769, $amount: 0.1);
+    }
+  }
+
+  &.dark {
+    background: #1e1f20;
+
+    &:hover {
+      background: transparentize($color: #1e1f20, $amount: 0.1);
+    }
+  }
+}

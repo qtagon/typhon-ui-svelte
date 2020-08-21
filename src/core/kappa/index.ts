@@ -1,8 +1,8 @@
 import { Row } from './base/Row';
 import { Component } from './base/Component';
-import { SIZE } from './interfaces/index';
+import { SIZE, ALIGNMENT } from './interfaces/index';
 
-export { Row, Component, SIZE };
+export { Row, Component, SIZE, ALIGNMENT };
 
 /**
  * Main generator

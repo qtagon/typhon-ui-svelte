@@ -1,22 +1,26 @@
 export enum POSITION {
   HORIZONTAL = 'horizontal',
   VERTICAL = 'vertical',
-  NONE = ''
+  NONE = '',
 }
 
 export enum ALIGNMENT {
-  LEFT = 'LEFT',
-  MIDDLE = 'MIDDLE',
-  RIGHT = 'RIGHT',
-  NONE = ''
+  TOP = 'top',
+  BOTTOM = 'bottom',
+  LEFT = 'left',
+  MIDDLE = 'middle',
+  RIGHT = 'right',
+  NONE = '',
 }
 
 export enum SIZE {
+  EXTRA_SMALL_X2 = 'xxs',
+  EXTRA_SMALL = 'xs',
   SMALL = 'sm',
   MIDDLE = 'md',
   LARGE = 'lg',
   EXTRA_LARGE = 'xl',
-  NONE = ''
+  NONE = '',
 }
 
 export interface Element {
@@ -30,4 +34,5 @@ export interface Element {
   position: POSITION;
   size: SIZE;
   url: string;
+  style: string;
 }

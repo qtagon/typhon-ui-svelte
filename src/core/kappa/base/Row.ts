@@ -13,6 +13,7 @@ export class Row implements Element {
   position: POSITION;
   size: SIZE = SIZE.NONE;
   url: string;
+  style: string;
 
   protected containers: Array<Container>;
   private icontainers: Map<string, Container>;

@@ -9,14 +9,4 @@ export class Image extends Component {
     super.url = url;
     super.size = size;
   }
-
-  public setClassified(classified: string): this {
-    this.classified = classified;
-    return this;
-  }
-
-  public setTitle(title: string): this {
-    this.title = title;
-    return this;
-  }
 }
