@@ -25,8 +25,17 @@ export class Component implements Element {
     this.style = '';
   }
 
+  public setNext() {
+    return '';
+  }
+
   public setAlignment(alignment: ALIGNMENT = ALIGNMENT.NONE): this {
     this.alignment = alignment;
+    return this;
+  }
+
+  public setSize(size: SIZE = SIZE.NONE): this {
+    this.size = size;
     return this;
   }
 
@@ -42,6 +51,16 @@ export class Component implements Element {
 
   public setTitle(title: string): this {
     this.title = title;
+    return this;
+  }
+
+  public setSubtitle(subtitle: string): this {
+    this.subtitle = subtitle;
+    return this;
+  }
+
+  public setDescription(description: string): this {
+    this.description = description;
     return this;
   }
 }

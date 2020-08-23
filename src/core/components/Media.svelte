@@ -6,29 +6,21 @@
    * Components
    */
   import caction from './Action.svelte';
+  import cimage from './Image.svelte';
   const components = {
     action: caction,
+    image: cimage,
   };
 
   export let title: string = '';
   export let subtitle: string = '';
+  export let description: string = '';
   export let image: Image;
   export let actions: Array<Action> = [];
 </script>
 
 <style type="text/scss">
   @import './scss/fonts.scss';
-
-  img {
-    object-fit: cover;
-    object-position: top;
-
-    &.sm {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 0.75rem;
-    }
-  }
 
   .media {
     display: flex;
@@ -40,13 +32,7 @@
     margin: 0 0.938rem;
     flex: 1;
     justify-content: center;
-  }
-
-  .image {
-    display: flex;
-    & > a {
-      display: flex;
-    }
+    overflow: hidden;
   }
 
   .actions {
@@ -54,29 +40,30 @@
     justify-content: center;
     align-items: center;
 
-    & > :global(button:not(:last-child)) {
+    & > :global(.button:not(:last-child)) {
       margin: 0 0.938rem 0 0;
     }
+  }
+
+  .title,
+  .subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 </style>
 
 <div class="media">
   {#if image}
-    <div class="image">
-      <a href={image.url} target="_blank">
-        <img
-          src={image.url}
-          alt={image.title}
-          class={`${image.classified} ${image.size}`}
-          aria-label={image.title}
-          rel="noopener noreferrer" />
-      </a>
+    <svelte:component this={components.image} {...image} />
+  {/if}
+  {#if title || subtitle || description}
+    <div class="content">
+      <div class="h3 title">{title}</div>
+      <div class="body-small subtitle">{subtitle}</div>
+      <div class="body-small description">{description}</div>
     </div>
   {/if}
-  <div class="content">
-    <div class="h3">{title}</div>
-    <div class="body-small">{subtitle}</div>
-  </div>
   {#if actions.length}
     <div class="actions">
       {#each actions as action}

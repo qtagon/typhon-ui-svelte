@@ -6,11 +6,13 @@ import { Media } from './Media';
 
 export class Card extends Component {
   type: string = 'card';
-  protected image: Image;
   protected media: Media;
 
   protected actions: Array<Action>;
   private iactions: Map<string, Action>;
+
+  protected images: Array<Image>;
+  private iimages: Map<string, Image>;
 
   /**
    *
@@ -23,6 +25,8 @@ export class Card extends Component {
     super.subtitle = subtitle;
     this.actions = [];
     this.iactions = new Map();
+    this.images = [];
+    this.iimages = new Map();
   }
 
   /**
@@ -32,7 +36,8 @@ export class Card extends Component {
    */
   public setImage(url: string = '', size: SIZE = SIZE.NONE): Image {
     const image = new Image(url, size);
-    this.image = image;
+    this.images.push(image);
+    this.iimages.set(image.identifier, image);
     return image;
   }
 

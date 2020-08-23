@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Icon } from '../kappa/components/Icon';
+  import { SIZE, ALIGNMENT } from '../kappa/interfaces/index';
 
   /**
    * Components
@@ -13,16 +14,20 @@
   export let url: string = '';
   export let classified: string = '';
   export let icon: Icon;
+  export let alignment: ALIGNMENT = ALIGNMENT.NONE;
+  export let size: SIZE = SIZE.NONE;
 
   const untitled = icon && !title ? 'untitled' : '';
 </script>
 
 <style type="text/scss">
   @import './scss/button.scss';
+  @import './scss/fonts.scss';
+  @import './scss/alignment.scss';
 </style>
 
 <a
-  class={`button ${classified} ${untitled} display`}
+  class={`button ${classified} ${untitled} ${alignment} ${size} display`}
   href={url}
   name={title}
   aria-label={title}

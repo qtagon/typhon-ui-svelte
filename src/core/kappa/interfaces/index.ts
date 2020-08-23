@@ -1,7 +1,7 @@
 export enum POSITION {
   HORIZONTAL = 'horizontal',
   VERTICAL = 'vertical',
-  NONE = '',
+  NONE = 'none',
 }
 
 export enum ALIGNMENT {
@@ -10,7 +10,7 @@ export enum ALIGNMENT {
   LEFT = 'left',
   MIDDLE = 'middle',
   RIGHT = 'right',
-  NONE = '',
+  NONE = 'none',
 }
 
 export enum SIZE {
@@ -18,9 +18,11 @@ export enum SIZE {
   EXTRA_SMALL = 'xs',
   SMALL = 'sm',
   MIDDLE = 'md',
+  MIDDLE_X2 = 'mmd',
   LARGE = 'lg',
+  LARGE_X2 = 'llg',
   EXTRA_LARGE = 'xl',
-  NONE = '',
+  NONE = 'none',
 }
 
 export interface Element {

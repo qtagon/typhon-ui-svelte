@@ -1,5 +1,7 @@
 <script lang="ts">
   import Kappa, { SIZE, ALIGNMENT } from './core/kappa';
+  import { onMount } from 'svelte';
+
   /**
    * Components
    */
@@ -8,6 +10,7 @@
   import Action from './core/components/Action.svelte';
   import Image from './core/components/Image.svelte';
   import Notification from './core/components/Notification.svelte';
+  import { Container } from './core/kappa/base/Container';
 
   const components = {
     media: Media,
@@ -17,64 +20,73 @@
     notification: Notification,
   };
 
-  const dynamic = new Kappa('ui').setRow('content');
-  const container = dynamic.onRow('content').setContainer('products');
+  const defaultPicture =
+    'https://gp1.wac.edgecastcdn.net/802892/production_static/20200807141007/images/widgets/html5_audio/55/default_image.png';
+  let dynamic = new Kappa('ui').setRow('content');
+  let fcontainer = dynamic
+    .onRow('content')
+    .setClassified('display-flex direction-row')
+    .setContainer('news');
 
-  const notification = container.setNotification(
-    'Marriet Miles',
-    'sent you a friend request',
-    '4min'
-  );
+  fetch(
+    'http://newsapi.org/v2/top-headlines?apiKey=7c41da8c4a554de095aa8860ec8d7b0e&country=ru'
+  )
+    .then((r) => r.json())
+    .then(({ articles }) => {
+      articles.forEach((e) => {
+        const card = fcontainer.setCard(`${e.title}`, `${e.description || ''}`);
+        card.setImage(e.urlToImage || defaultPicture);
+        card
+          .setMedia(`${e.author || 'Unknown Author'}`, `${e.source.name}`)
+          .setImage(e.urlToImage || defaultPicture, SIZE.SMALL);
+      });
 
-  notification.setAction('').setClassified('primary').setIcon('addUser');
-  notification.setButton('Add').setClassified('success').setIcon('check');
-  notification
-    .setButton('Ignore')
-    .setClassified('transparent black')
-    .setIcon('close');
-  notification
-    .setIndicator()
-    .setStyle('margin-top: 0.625rem;')
-    .setAlignment(ALIGNMENT.TOP);
+      dynamic = dynamic;
+    });
 
-  notification
+  let ocontainer = dynamic.onRow('content').setContainer('videos');
+  ocontainer
+    .setMedia('Rings a Bell (Visualizer)', `@allieX`)
     .setImage(
-      'https://images.pexels.com/photos/4845272/pexels-photo-4845272.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      SIZE.EXTRA_SMALL_X2
-    )
-    .setAlignment(ALIGNMENT.TOP);
+      'https://cdn.dribbble.com/users/730703/screenshots/13960639/media/f9094a86313f7870788e7b76a3dddc50.jpg',
+      SIZE.SMALL
+    );
 
-  const notificationx = container.setNotification(
-    'Allie X',
-    'sent you a friend request',
-    'Feb 18, 2018'
-  );
+  fetch('https://reqres.in/api/users?page=1')
+    .then((r) => r.json())
+    .then(({ data }) => {
+      data.forEach((e) => {
+        ocontainer
+          .setMedia(`${e.first_name} ${e.last_name}`, `${e.email}`)
+          .setImage(e.avatar, SIZE.SMALL);
+      });
 
-  notificationx.setAction('').setClassified('primary').setIcon('addUser');
-  notificationx.setButton('Added').setClassified('dark').setIcon('close');
-  notificationx
-    .setIndicator()
-    .setStyle('margin-top: 0.9375rem;')
-    .setAlignment(ALIGNMENT.TOP);
-
-  notificationx
-    .setImage(
-      'https://images.pexels.com/photos/4294972/pexels-photo-4294972.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      SIZE.EXTRA_SMALL
-    )
-    .setAlignment(ALIGNMENT.TOP);
+      dynamic = dynamic;
+    });
 </script>
 
 <style type="text/scss">
+  @import './core/components/scss/alignment.scss';
 
+  .row {
+    & > .container {
+      &:not(:last-child) {
+        margin-right: 1.875rem;
+      }
+
+      & > :global(div) {
+        margin-bottom: 1.875rem;
+      }
+    }
+  }
 </style>
 
 <main>
-  {#each dynamic.getRows() as row, i}
-    <div class="row">
-      {#each row.getContainers() as container}
+  {#each dynamic.getRows() as row (row.identifier)}
+    <div class={`row ${row.classified}`}>
+      {#each row.getContainers() as container (container.identifier)}
         <div class="container">
-          {#each container.getComponents() as component}
+          {#each container.getComponents() as component (component.identifier)}
             <svelte:component
               this={components[component.type]}
               {...component} />

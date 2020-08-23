@@ -37,11 +37,27 @@ img.md,
   border-radius: 1.25rem;
 }
 
+.image.mmd,
+img.mmd,
+.image > a.mmd {
+  width: 5.938rem;
+  height: 5.938rem;
+  border-radius: 0.5rem;
+}
+
 .image.lg,
 img.lg,
 .image > a.lg {
   width: 10rem;
   height: 9.063rem;
+  border-radius: 0.5rem;
+}
+
+.image.llg,
+img.llg,
+.image > a.llg {
+  width: 12.5rem;
+  height: 12.5rem;
   border-radius: 0.5rem;
 }
 

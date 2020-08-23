@@ -47,13 +47,22 @@ export class Container implements Element {
 
   /**
    *
+   * @param {Component} component
+   */
+  public setComponent(component: Component): Component {
+    this.components = [...this.components, component];
+    this.icomponents.set(component.identifier, component);
+    return component;
+  }
+
+  /**
+   *
    * @param {string} title
    * @param {string} subtitle
    */
   public setMedia(title: string = '', subtitle: string = ''): Media {
     const media = new Media(title, subtitle);
-    this.components.push(media);
-    this.icomponents.set(media.identifier, media);
+    this.setComponent(media);
     return media;
   }
 
@@ -64,8 +73,7 @@ export class Container implements Element {
    */
   public setCard(title: string = '', subtitle: string = ''): Card {
     const card = new Card(title, subtitle);
-    this.components.push(card);
-    this.icomponents.set(card.identifier, card);
+    this.setComponent(card);
     return card;
   }
 
@@ -76,8 +84,7 @@ export class Container implements Element {
    */
   public setAction(title: string = '', size: SIZE = SIZE.SMALL): Action {
     const action = new Action(title, size);
-    this.components.push(action);
-    this.icomponents.set(action.identifier, action);
+    this.setComponent(action);
     return action;
   }
 
@@ -88,8 +95,7 @@ export class Container implements Element {
    */
   public setImage(url: string = '', size: SIZE = SIZE.NONE): Image {
     const image = new Image(url, size);
-    this.components.push(image);
-    this.icomponents.set(image.identifier, image);
+    this.setComponent(image);
     return image;
   }
 
@@ -104,8 +110,7 @@ export class Container implements Element {
     description: string = ''
   ): Notification {
     const notification = new Notification(title, subtitle, description);
-    this.components.push(notification);
-    this.icomponents.set(notification.identifier, notification);
+    this.setComponent(notification);
     return notification;
   }
 }

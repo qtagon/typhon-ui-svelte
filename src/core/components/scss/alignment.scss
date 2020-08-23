@@ -9,3 +9,25 @@
 .bottom {
   align-self: end;
 }
+
+.right {
+  align-self: end;
+  margin-left: auto;
+}
+
+.left {
+  align-self: start;
+  margin-right: auto;
+}
+
+.direction-column {
+  flex-direction: column;
+}
+
+.direction-row {
+  flex-direction: row;
+}
+
+.display-flex {
+  display: flex;
+}

@@ -18,6 +18,11 @@ export class Row implements Element {
   protected containers: Array<Container>;
   private icontainers: Map<string, Container>;
 
+  public setClassified(classified: string): this {
+    this.classified = classified;
+    return this;
+  }
+
   constructor(identifier: string = '') {
     this.identifier = identifier || Helper.guid();
     this.title = '';
