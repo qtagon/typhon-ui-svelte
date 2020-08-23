@@ -6,6 +6,7 @@ import { Card } from '../components/Card';
 import { Action } from '../components/Action';
 import { Image } from '../components/Image';
 import { Notification } from '../components/Notification';
+import { Search } from '../components/Search';
 
 import Helper from './Helper';
 
@@ -112,5 +113,16 @@ export class Container implements Element {
     const notification = new Notification(title, subtitle, description);
     this.setComponent(notification);
     return notification;
+  }
+
+  /**
+   *
+   * @param {string} title
+   * @param {string} subtitle
+   */
+  public setSearch(title: string = '', subtitle: string = ''): Search {
+    const search = new Search(title, subtitle);
+    this.setComponent(search);
+    return search;
   }
 }

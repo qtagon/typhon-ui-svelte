@@ -4,6 +4,7 @@
 
 .middle {
   align-self: center;
+  order: 1;
 }
 
 .bottom {
@@ -13,11 +14,13 @@
 .right {
   align-self: end;
   margin-left: auto;
+  order: 2;
 }
 
 .left {
   align-self: start;
   margin-right: auto;
+  order: 0;
 }
 
 .direction-column {

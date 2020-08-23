@@ -1,6 +1,5 @@
 <script lang="ts">
   import Kappa, { SIZE, ALIGNMENT } from './core/kappa';
-  import { onMount } from 'svelte';
 
   /**
    * Components
@@ -10,7 +9,7 @@
   import Action from './core/components/Action.svelte';
   import Image from './core/components/Image.svelte';
   import Notification from './core/components/Notification.svelte';
-  import { Container } from './core/kappa/base/Container';
+  import Search from './core/components/Search.svelte';
 
   const components = {
     media: Media,
@@ -18,18 +17,25 @@
     action: Action,
     image: Image,
     notification: Notification,
+    search: Search
   };
 
   const defaultPicture =
     'https://gp1.wac.edgecastcdn.net/802892/production_static/20200807141007/images/widgets/html5_audio/55/default_image.png';
   let dynamic = new Kappa('ui').setRow('content');
+  let scontainer = dynamic
+    .onRow('content').setContainer('search');
+
+  const search = scontainer.setSearch('Search news...').setAlignment(ALIGNMENT.MIDDLE);
+  search.setAction('').setAlignment(ALIGNMENT.LEFT).setClassified('transparent').setIcon('search');
+
   let fcontainer = dynamic
     .onRow('content')
     .setClassified('display-flex direction-row')
     .setContainer('news');
 
   fetch(
-    'http://newsapi.org/v2/top-headlines?apiKey=7c41da8c4a554de095aa8860ec8d7b0e&country=ru'
+    'http://newsapi.org/v2/top-headlines?apiKey=7c41da8c4a554de095aa8860ec8d7b0e&country=us'
   )
     .then((r) => r.json())
     .then(({ articles }) => {
@@ -38,7 +44,7 @@
         card.setImage(e.urlToImage || defaultPicture);
         card
           .setMedia(`${e.author || 'Unknown Author'}`, `${e.source.name}`)
-          .setImage(e.urlToImage || defaultPicture, SIZE.SMALL);
+          .setImage(defaultPicture, SIZE.SMALL);
       });
 
       dynamic = dynamic;
@@ -69,6 +75,10 @@
   @import './core/components/scss/alignment.scss';
 
   .row {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+
     & > .container {
       &:not(:last-child) {
         margin-right: 1.875rem;
