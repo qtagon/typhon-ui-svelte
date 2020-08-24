@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Kappa, { SIZE, ALIGNMENT } from './core/kappa';
+  import Kappa, { SIZE, ALIGNMENT, Column } from './core/kappa';
 
   /**
    * Components
@@ -10,6 +10,9 @@
   import Image from './core/components/Image.svelte';
   import Notification from './core/components/Notification.svelte';
   import Search from './core/components/Search.svelte';
+  import Tabs from './core/components/Tabs.svelte';
+  import Menu from './core/components/Menu.svelte';
+  import Title from './core/components/Title.svelte';
 
   const components = {
     media: Media,
@@ -17,22 +20,45 @@
     action: Action,
     image: Image,
     notification: Notification,
-    search: Search
+    search: Search,
+    tabs: Tabs,
+    menu: Menu,
+    title: Title
   };
 
-  const defaultPicture =
-    'https://gp1.wac.edgecastcdn.net/802892/production_static/20200807141007/images/widgets/html5_audio/55/default_image.png';
-  let dynamic = new Kappa('ui').setRow('content');
-  let scontainer = dynamic
-    .onRow('content').setContainer('search');
+  const picture =
+    'https://coubsecureassets-a.akamaihd.net/assets/default-avatars/273-25383fd95f5da0be3d8f716a463af402c3ee0fce4f2638164c03ce8f69d1449b.png';
 
-  const search = scontainer.setSearch('Search news...').setAlignment(ALIGNMENT.MIDDLE);
-  search.setAction('').setAlignment(ALIGNMENT.LEFT).setClassified('transparent').setIcon('search');
+  let dynamic = new Kappa('ui')
+    .setColumn('left-left')
+    .setColumn('left')
+    .setColumn('right');
+  let cccontainer = dynamic
+    .onColumn('left-left')
+    .setRow('ccontent')
+    .setContainer('csearch');
 
-  let fcontainer = dynamic
-    .onRow('content')
-    .setClassified('display-flex direction-row')
-    .setContainer('news');
+  const menu = cccontainer.setMenu();
+  menu.setOption().setIcon('home');
+  menu.setOption().setIcon('calendar');
+  menu.setOption().setIcon('message');
+  menu.setOption().setIcon('user');
+  menu.setOption().setIcon('logout');
+
+  let ccontainer = dynamic
+    .onColumn('left')
+    .setStyle('padding: 2.938rem; flex: 0 0 50%;')
+    .setRow('content')
+    .setClassified('direction-column')
+    .setContainer('search');
+
+  ccontainer.setSearch('Search in news...');
+  const tabs = ccontainer.setTabs('News');
+  tabs.setOption('Anytime').setClassified('active');
+  tabs.setOption('Today');
+  tabs.setOption('Tomorrow');
+  tabs.setOption('This Week');
+  tabs.setOption('This Month');
 
   fetch(
     'http://newsapi.org/v2/top-headlines?apiKey=7c41da8c4a554de095aa8860ec8d7b0e&country=us'
@@ -40,25 +66,27 @@
     .then((r) => r.json())
     .then(({ articles }) => {
       articles.forEach((e) => {
-        const card = fcontainer.setCard(`${e.title}`, `${e.description || ''}`);
-        card.setImage(e.urlToImage || defaultPicture);
+        const card = ccontainer.setCard(`${e.title}`, `${e.description || ''}`);
+        card.setImage(e.urlToImage || picture);
         card
-          .setMedia(`${e.author || 'Unknown Author'}`, `${e.source.name}`)
-          .setImage(defaultPicture, SIZE.SMALL);
+          .setAction('Interested')
+          .setClassified('transparent bordered')
+          .setIcon('check');
       });
 
       dynamic = dynamic;
     });
 
-  let ocontainer = dynamic.onRow('content').setContainer('videos');
-  ocontainer
-    .setMedia('Rings a Bell (Visualizer)', `@allieX`)
-    .setImage(
-      'https://cdn.dribbble.com/users/730703/screenshots/13960639/media/f9094a86313f7870788e7b76a3dddc50.jpg',
-      SIZE.SMALL
-    );
+  let ocontainer = dynamic
+    .onColumn('right')
+    .setStyle('padding: 2.938rem;')
+    .setRow('content')
+    .setClassified('direction-column')
+    .setContainer('search');
 
-  fetch('https://reqres.in/api/users?page=1')
+  ocontainer.setTitle('Top Writers').setClassified('h3');
+
+  fetch('https://reqres.in/api/users?page=2')
     .then((r) => r.json())
     .then(({ data }) => {
       data.forEach((e) => {
@@ -72,12 +100,26 @@
 </script>
 
 <style type="text/scss">
+  @import './core/components/scss/fonts.scss';
   @import './core/components/scss/alignment.scss';
+
+  :global(body),
+  :global(html) {
+    overflow-x: hidden;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    background: #f7f7f7;
+    display: flex;
+  }
 
   .row {
     display: flex;
     flex: 1 1 auto;
-    flex-wrap: wrap;
+    height: 100%;
 
     & > .container {
       &:not(:last-child) {
@@ -92,14 +134,18 @@
 </style>
 
 <main>
-  {#each dynamic.getRows() as row (row.identifier)}
-    <div class={`row ${row.classified}`}>
-      {#each row.getContainers() as container (container.identifier)}
-        <div class="container">
-          {#each container.getComponents() as component (component.identifier)}
-            <svelte:component
-              this={components[component.type]}
-              {...component} />
+  {#each dynamic.getColumns() as column (column.identifier)}
+    <div class="column" style={column.style}>
+      {#each column.getRows() as row (row.identifier)}
+        <div class={`row ${row.classified}`}>
+          {#each row.getContainers() as container (container.identifier)}
+            <div class="container">
+              {#each container.getComponents() as component (component.identifier)}
+                <svelte:component
+                  this={components[component.type]}
+                  {...component} />
+              {/each}
+            </div>
           {/each}
         </div>
       {/each}

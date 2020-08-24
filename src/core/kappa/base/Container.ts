@@ -7,6 +7,9 @@ import { Action } from '../components/Action';
 import { Image } from '../components/Image';
 import { Notification } from '../components/Notification';
 import { Search } from '../components/Search';
+import { Tabs } from '../components/Tabs';
+import { Menu } from '../components/Menu';
+import { Title } from '../components/Title';
 
 import Helper from './Helper';
 
@@ -34,6 +37,7 @@ export class Container implements Element {
     this.classified = '';
     this.alignment = ALIGNMENT.LEFT;
     this.position = POSITION.HORIZONTAL;
+    this.style = '';
 
     /**
      * Components
@@ -44,6 +48,11 @@ export class Container implements Element {
 
   public getComponents(): Array<Component> {
     return this.components;
+  }
+
+  public setStyle(style: string = ''): this {
+    this.style = style;
+    return this;
   }
 
   /**
@@ -65,6 +74,26 @@ export class Container implements Element {
     const media = new Media(title, subtitle);
     this.setComponent(media);
     return media;
+  }
+
+  /**
+   *
+   * @param {string} title
+   */
+  public setMenu(title: string = ''): Menu {
+    const menu = new Menu(title);
+    this.setComponent(menu);
+    return menu;
+  }
+
+  /**
+   *
+   * @param {string} title
+   */
+  public setTabs(title: string = ''): Tabs {
+    const tabs = new Tabs(title);
+    this.setComponent(tabs);
+    return tabs;
   }
 
   /**
@@ -124,5 +153,15 @@ export class Container implements Element {
     const search = new Search(title, subtitle);
     this.setComponent(search);
     return search;
+  }
+
+  /**
+   * A very dumb component
+   * @param {string} title
+   */
+  public setTitle(title: string = ''): Title {
+    const titled = new Title(title);
+    this.setComponent(titled);
+    return titled;
   }
 }

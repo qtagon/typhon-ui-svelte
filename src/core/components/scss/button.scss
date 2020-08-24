@@ -53,6 +53,12 @@ button,
         fill: #ffffff;
       }
     }
+
+    &.bordered {
+      border: 0.125rem solid rgba(143, 146, 161, 0.2);
+      box-sizing: border-box;
+      border-radius: 0.25rem;
+    }
   }
 
   &.success {

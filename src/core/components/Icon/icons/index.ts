@@ -6,3 +6,8 @@ export { default as addUser } from './addUser';
 export { default as close } from './close';
 export { default as options } from './options';
 export { default as search } from './search';
+export { default as user } from './user';
+export { default as calendar } from './calendar';
+export { default as home } from './home';
+export { default as message } from './message';
+export { default as logout } from './logout';

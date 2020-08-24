@@ -31,10 +31,10 @@
   }
 </style>
 
-<div class={`image ${size} ${alignment}`}>
+<div class={`image ${size} ${alignment} ${classified}`}>
   <a
     href={url}
-    class={`${size}`}
+    class={`${size} ${classified}`}
     target="_blank"
     aria-label={title}
     rel="noopener noreferrer">

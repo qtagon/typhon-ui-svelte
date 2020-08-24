@@ -8,63 +8,83 @@ img.none,
 .image.xxs,
 img.xxs,
 .image > a.xxs {
-  width: 1.75rem;
-  height: 1.75rem;
+  &:not(.wide) {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
   border-radius: 0.625em;
 }
 
 .image.sm,
 img.sm,
 .image > a.sm {
-  width: 3rem;
-  height: 3rem;
+  &:not(.wide) {
+    width: 3rem;
+    height: 3rem;
+  }
   border-radius: 0.75rem;
 }
 
 .image.xs,
 img.xs,
 .image > a.xs {
-  width: 2.375rem;
-  height: 2.375rem;
+  &:not(.wide) {
+    width: 2.375rem;
+    height: 2.375rem;
+  }
   border-radius: 0.75rem;
 }
 
 .image.md,
 img.md,
 .image > a.md {
-  width: 4.75rem;
-  height: 4.75rem;
+  &:not(.wide) {
+    width: 4.75rem;
+    height: 4.75rem;
+  }
   border-radius: 1.25rem;
 }
 
 .image.mmd,
 img.mmd,
 .image > a.mmd {
-  width: 5.938rem;
-  height: 5.938rem;
+  &:not(.wide) {
+    width: 5.938rem;
+    height: 5.938rem;
+  }
   border-radius: 0.5rem;
 }
 
 .image.lg,
 img.lg,
 .image > a.lg {
-  width: 10rem;
-  height: 9.063rem;
+  &:not(.wide) {
+    width: 10rem;
+    height: 9.063rem;
+  }
   border-radius: 0.5rem;
 }
 
 .image.llg,
 img.llg,
 .image > a.llg {
-  width: 12.5rem;
-  height: 12.5rem;
+  &:not(.wide) {
+    width: 12.5rem;
+    height: 12.5rem;
+  }
   border-radius: 0.5rem;
 }
 
 .image.xl,
 img.xl,
 .image > a.xl {
-  width: 21.875rem;
-  height: 19.063rem;
+  &:not(.wide) {
+    width: 21.875rem;
+    height: 19.063rem;
+  }
   border-radius: 0.5rem;
+}
+
+.wide {
+  width: 100%;
 }
