@@ -23,7 +23,7 @@
     search: Search,
     tabs: Tabs,
     menu: Menu,
-    title: Title
+    title: Title,
   };
 
   const picture =
@@ -52,30 +52,12 @@
     .setClassified('direction-column')
     .setContainer('search');
 
-  ccontainer.setSearch('Search in news...');
+  ccontainer.setSearch('Search in news...').setEvent('search');
   const tabs = ccontainer.setTabs('News');
-  tabs.setOption('Anytime').setClassified('active');
-  tabs.setOption('Today');
-  tabs.setOption('Tomorrow');
-  tabs.setOption('This Week');
-  tabs.setOption('This Month');
-
-  fetch(
-    'http://newsapi.org/v2/top-headlines?apiKey=7c41da8c4a554de095aa8860ec8d7b0e&country=us'
-  )
-    .then((r) => r.json())
-    .then(({ articles }) => {
-      articles.forEach((e) => {
-        const card = ccontainer.setCard(`${e.title}`, `${e.description || ''}`);
-        card.setImage(e.urlToImage || picture);
-        card
-          .setAction('Interested')
-          .setClassified('transparent bordered')
-          .setIcon('check');
-      });
-
-      dynamic = dynamic;
-    });
+  tabs.setOption('United States').setClassified('active');
+  tabs.setOption('Russia').setEvent('search', { country: 'ru' });
+  tabs.setOption('Ukraine').setEvent('search', { country: 'ua' });
+  tabs.setOption('Romania').setEvent('search', { country: 'ro' });
 
   let ocontainer = dynamic
     .onColumn('right')
@@ -97,6 +79,48 @@
 
       dynamic = dynamic;
     });
+
+  /**
+   * Functions
+   */
+  const searchNews = (q: string = '', country: string = 'us') => {
+    const params = new URLSearchParams({
+      apiKey: '7c41da8c4a554de095aa8860ec8d7b0e',
+      country,
+      q,
+      pageSize: '50',
+    }).toString();
+
+    ccontainer.clear('card');
+    dynamic = dynamic;
+
+    fetch(`http://newsapi.org/v2/top-headlines?${params}`)
+      .then((r) => r.json())
+      .then(({ articles }) => {
+        articles.forEach((e) => {
+          const card = ccontainer.setCard(
+            `${e.title}`,
+            `${e.description || ''}`
+          );
+          card.setImage(e.urlToImage || picture);
+          card
+            .setAction('Read More')
+            .setClassified('transparent bordered')
+            .setIcon('share');
+        });
+        dynamic = dynamic;
+      });
+  };
+  searchNews();
+
+  /**
+   *
+   */
+  const onSearchEvent = ({ detail }) => {
+    const country = detail?.parameters?.country || 'us';
+    const query = detail?.value || '';
+    searchNews(query, country);
+  };
 </script>
 
 <style type="text/scss">
@@ -114,6 +138,8 @@
   main {
     background: #f7f7f7;
     display: flex;
+    height: 100%;
+    width: 100%;
   }
 
   .row {
@@ -122,12 +148,10 @@
     height: 100%;
 
     & > .container {
-      &:not(:last-child) {
-        margin-right: 1.875rem;
-      }
-
       & > :global(div) {
-        margin-bottom: 1.875rem;
+        &:not(:last-child) {
+          margin-bottom: 1.875rem;
+        }
       }
     }
   }
@@ -143,6 +167,7 @@
               {#each container.getComponents() as component (component.identifier)}
                 <svelte:component
                   this={components[component.type]}
+                  on:search={onSearchEvent}
                   {...component} />
               {/each}
             </div>

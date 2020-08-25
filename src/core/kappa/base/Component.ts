@@ -1,5 +1,6 @@
 import { Element, ALIGNMENT, POSITION, SIZE } from '../interfaces/index';
 import Helper from './Helper';
+import { Event } from './Event';
 
 export class Component implements Element {
   identifier: string;
@@ -13,6 +14,7 @@ export class Component implements Element {
   size: SIZE = SIZE.NONE;
   url: string;
   style: string;
+  event: Event;
 
   constructor(identifier: string = '') {
     this.identifier = identifier || Helper.guid();
@@ -23,10 +25,17 @@ export class Component implements Element {
     this.alignment = ALIGNMENT.LEFT;
     this.position = POSITION.HORIZONTAL;
     this.style = '';
+    this.event = new Event();
   }
 
-  public setNext() {
-    return '';
+  /**
+   * Set event of the component
+   * @param {string} name - name of the event to be emitted
+   * @param {any} parameters - parameters of the event that should be forwarded
+   */
+  public setEvent(name: string = '', parameters: any = ''): this {
+    this.event = new Event(name, parameters);
+    return this;
   }
 
   public setAlignment(alignment: ALIGNMENT = ALIGNMENT.NONE): this {

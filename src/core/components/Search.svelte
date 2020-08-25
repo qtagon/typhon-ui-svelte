@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { Image } from '../kappa/components/Image';
   import type { Action } from '../kappa/components/Action';
+  import type { Event } from '../kappa/base/Event';
   import { ALIGNMENT } from '../kappa/interfaces/index';
+
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
 
   /**
    * Components
@@ -11,10 +15,35 @@
     action: caction,
   };
 
+  /**
+   * Props
+   */
+  export let value: string = '';
   export let title: string = '';
+  export let event: Event;
   export let subtitle: string = '';
   export let actions: Array<Action> = [];
   export let alignment: ALIGNMENT = ALIGNMENT.NONE;
+
+  /**
+   * Functions
+   */
+  const emit = (name, parameters) => {
+    if (name) dispatch(name, parameters);
+    return;
+  };
+
+  let timeout = null;
+  const onInput = (e) => {
+    value = e.target.value;
+
+    if (timeout !== null) clearTimeout(timeout);
+
+    timeout = setTimeout(function () {
+      const { name, parameters } = event;
+      emit(name, { title, value, parameters });
+    }, 350);
+  };
 </script>
 
 <style type="text/scss">
@@ -62,7 +91,13 @@
 </style>
 
 <div class={`search`}>
-  <input placeholder={title} class={`display ${alignment}`} />
+  <input
+    placeholder={title}
+    class={`display ${alignment}`}
+    {value}
+    name="search"
+    on:input={onInput}
+    autocomplete="on" />
   {#if actions.length}
     {#each actions as action}
       <svelte:component this={components.action} {...action} />

@@ -11,3 +11,4 @@ export { default as calendar } from './calendar';
 export { default as home } from './home';
 export { default as message } from './message';
 export { default as logout } from './logout';
+export { default as logo } from './logo';

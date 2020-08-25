@@ -46,6 +46,25 @@ export class Container implements Element {
     this.icomponents = new Map();
   }
 
+  /**
+   * Clear specific component type
+   * @param {string} type
+   */
+  public clear(type: string = ''): this {
+    const storage = [];
+    this.components.forEach((component: Component) => {
+      if (component.type !== type) {
+        storage.push(...[component]);
+        return;
+      }
+
+      this.icomponents.delete(component.identifier);
+    });
+
+    this.components = storage;
+    return this;
+  }
+
   public getComponents(): Array<Component> {
     return this.components;
   }
