@@ -35,6 +35,7 @@
     .setColumn('right');
   let cccontainer = dynamic
     .onColumn('left-left')
+    .setClassified('flex-auto')
     .setRow('ccontent')
     .setContainer('csearch');
 
@@ -47,14 +48,17 @@
 
   let ccontainer = dynamic
     .onColumn('left')
-    .setStyle('padding: 2.938rem; flex: 0 0 50%;')
+    .setStyle('padding: 2.938rem;')
     .setRow('content')
     .setClassified('direction-column')
     .setContainer('search');
 
   ccontainer.setSearch('Search in news...').setEvent('search');
   const tabs = ccontainer.setTabs('News');
-  tabs.setOption('United States').setClassified('active');
+  tabs
+    .setOption('United States')
+    .setClassified('active')
+    .setEvent('search', { country: 'us' });
   tabs.setOption('Russia').setEvent('search', { country: 'ru' });
   tabs.setOption('Ukraine').setEvent('search', { country: 'ua' });
   tabs.setOption('Romania').setEvent('search', { country: 'ro' });
@@ -116,38 +120,79 @@
   /**
    *
    */
+  let country = 'us';
   const onSearchEvent = ({ detail }) => {
-    const country = detail?.parameters?.country || 'us';
     const query = detail?.value || '';
-    searchNews(query, country);
+    searchNews(query, (country = detail?.parameters?.country || country));
   };
 </script>
 
 <style type="text/scss">
+  @import './core/components/scss/scroller.scss';
   @import './core/components/scss/fonts.scss';
   @import './core/components/scss/alignment.scss';
 
-  :global(body),
   :global(html) {
-    overflow-x: hidden;
+    display: flex;
+    width: 100%;
+    height: 100%;
     background: #f7f7f7;
+  }
+
+  :global(body) {
+    display: flex;
+    flex: 1;
     margin: 0;
     padding: 0;
   }
 
   main {
-    background: #f7f7f7;
-    display: flex;
+    z-index: auto;
     height: 100%;
     width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    align-items: flex-start;
+  }
+
+  .column {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 100%;
+    min-height: 0;
+    position: relative;
+
+    &.flex-auto {
+      flex: 0 1 auto;
+    }
   }
 
   .row {
     display: flex;
-    flex: 1 1 auto;
+    width: 100%;
     height: 100%;
+    overflow: hidden;
 
-    & > .container {
+    & > .scroller {
+      position: relative;
+      height: 100%;
+    }
+
+    & .container {
+      display: flex;
+      flex: 1 1 100%;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+
       & > :global(div) {
         &:not(:last-child) {
           margin-bottom: 1.875rem;
@@ -159,19 +204,23 @@
 
 <main>
   {#each dynamic.getColumns() as column (column.identifier)}
-    <div class="column" style={column.style}>
+    <div class={`column ${column.classified}`} style={column.style}>
       {#each column.getRows() as row (row.identifier)}
         <div class={`row ${row.classified}`}>
-          {#each row.getContainers() as container (container.identifier)}
-            <div class="container">
-              {#each container.getComponents() as component (component.identifier)}
-                <svelte:component
-                  this={components[component.type]}
-                  on:search={onSearchEvent}
-                  {...component} />
+          <div class="scroller-container scroller-fade scroller-ghost-hairline">
+            <div class="scroller">
+              {#each row.getContainers() as container (container.identifier)}
+                <div class="container">
+                  {#each container.getComponents() as component (component.identifier)}
+                    <svelte:component
+                      this={components[component.type]}
+                      on:search={onSearchEvent}
+                      {...component} />
+                  {/each}
+                </div>
               {/each}
             </div>
-          {/each}
+          </div>
         </div>
       {/each}
     </div>

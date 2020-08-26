@@ -29,6 +29,18 @@
     display: flex;
     flex-direction: column;
 
+    &.padding {
+      padding: 1.875rem;
+    }
+
+    &.round {
+      border-radius: 0.75rem;
+    }
+
+    &.white {
+      background-color: #ffffff;
+    }
+
     & > :global(div.image) {
       margin: 1.125rem 0;
     }
@@ -41,10 +53,15 @@
   }
 
   .content {
-    display: flex;
+    display: grid;
     flex-direction: column;
-    flex: 1;
-    justify-content: center;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, [col] 5.938rem);
+
+    & > .title,
+    .subtitle {
+      grid-column: 1/-1;
+    }
 
     & > .title {
       margin: 0 0 0.5rem 0;
@@ -63,11 +80,18 @@
 
   .images {
     display: grid;
-    grid-gap: 0.625rem;
     width: 100%;
     grid-template-columns: repeat(auto-fill, [col] 5.938rem);
-    grid-template-rows: repeat(auto-fill, [row] 5.938rem);
     margin: 1.125rem 0;
+
+    &:not(.single) {
+      grid-gap: 0.625rem;
+      grid-template-rows: repeat(auto-fill, [row] 5.938rem);
+    }
+
+    &.no-media {
+      margin: 0 0 1.125rem 0;
+    }
 
     & > :global(.image:first-child) {
       grid-column: col 1 / span 2;
@@ -90,7 +114,8 @@
     <svelte:component this={components.media} {...media} />
   {/if}
   {#if images.length}
-    <div class={`images ${images.length === 1 ? 'single' : ''}`}>
+    <div
+      class={`images ${images.length === 1 ? 'single' : ''} ${media || 'no-media'}`}>
       {#each images as image}
         <svelte:component this={components.image} {...image} />
       {/each}
@@ -102,7 +127,7 @@
         <div class="h3 title">{title}</div>
       {/if}
       {#if subtitle}
-        <div class="display">{subtitle}</div>
+        <div class="display subtitle">{subtitle}</div>
       {/if}
     </div>
   {/if}

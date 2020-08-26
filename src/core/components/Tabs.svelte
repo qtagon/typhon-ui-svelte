@@ -34,6 +34,8 @@
 
   .tabs {
     display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0 !important;
 
     & > .option {
       cursor: pointer;
@@ -45,6 +47,7 @@
 
       &:not(:last-child) {
         margin-right: 1.875rem;
+        margin-bottom: 1.875rem;
       }
     }
   }

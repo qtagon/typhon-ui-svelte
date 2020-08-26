@@ -1,0 +1,125 @@
+/**
+ * Scroller
+ */
+.scroller-container {
+  overflow: hidden;
+  height: auto;
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+
+  & > .scroller {
+    z-index: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex: 1 1 auto;
+    padding-right: 1.063rem;
+
+    &::-webkit-scrollbar {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-track {
+      background-clip: padding-box;
+      border-width: 0.188rem;
+      border-style: solid;
+      border-radius: 0.438rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-width: initial;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: transparent;
+    }
+  }
+}
+
+.scroller-fade .scroller::-webkit-scrollbar-thumb,
+.scroller-fade .scroller::-webkit-scrollbar-track {
+  visibility: hidden;
+}
+
+.scroller-fade .scroller:hover::-webkit-scrollbar-thumb,
+.scroller-fade .scroller:hover::-webkit-scrollbar-track,
+.scroller-fade:hover::-webkit-scrollbar-thumb,
+.scroller-fade:hover::-webkit-scrollbar-track {
+  visibility: visible;
+}
+
+.scroller-fade .scroller:hover,
+.scroller-fade:hover {
+  opacity: 1;
+}
+
+.scroller-fade {
+  -webkit-transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.scroller::-webkit-scrollbar-thumb,
+.scroller-container .scroller::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.scroller::-webkit-scrollbar-track,
+.scroller-container .scroller::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.scroller-ghost-hairline .scroller::-webkit-scrollbar,
+.scroller::-webkit-scrollbar {
+  width: 0.594rem;
+  height: 0.594rem;
+}
+
+.scroller-ghost-hairline .scroller::-webkit-scrollbar-thumb,
+.scroller::-webkit-scrollbar-thumb {
+  border: 0.125rem solid transparent;
+  border-radius: 0.313rem;
+  cursor: move;
+}
+
+.scroller-ghost-hairline .scroller::-webkit-scrollbar-corner,
+.scroller::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.scroller-ghost-hairline .scroller::-webkit-scrollbar-track,
+.scroller::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: 0.125rem solid transparent;
+}
+
+.scroller-ghost-hairline .scroller::-webkit-scrollbar-thumb {
+  background-color: rgba(143, 146, 161, 0.25);
+}
+
+.scrollbar-special::-webkit-scrollbar-corner {
+  border: none;
+  background: 0 0;
+}
+
+.scroller-ghost-hairline-special::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.scroller-ghost-hairline-special::-webkit-scrollbar-thumb {
+  background-color: rgba(32, 34, 37, 0.6);
+  border-radius: 0.125rem;
+  cursor: move;
+}
+
+.scroller-ghost-hairline-special::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: none;
+  margin: 0 1.875rem;
+}
