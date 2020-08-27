@@ -17,29 +17,19 @@
 
   export let title: string = '';
   export let subtitle: string = '';
+  export let classified: string = '';
   export let images: Array<Image> = [];
   export let media: Media;
   export let actions: Array<Action> = [];
 </script>
 
 <style type="text/scss">
+  @import './scss/constraints.scss';
   @import './scss/fonts.scss';
 
   .card {
     display: flex;
     flex-direction: column;
-
-    &.padding {
-      padding: 1.875rem;
-    }
-
-    &.round {
-      border-radius: 0.75rem;
-    }
-
-    &.white {
-      background-color: #ffffff;
-    }
 
     & > :global(div.image) {
       margin: 1.125rem 0;
@@ -60,11 +50,11 @@
 
     & > .title,
     .subtitle {
-      grid-column: 1/-1;
-    }
+      &.title {
+        margin: 0 0 0.5rem 0;
+      }
 
-    & > .title {
-      margin: 0 0 0.5rem 0;
+      grid-column: 1/-1;
     }
   }
 
@@ -109,7 +99,7 @@
   }
 </style>
 
-<div class="card">
+<div class={`card ${classified}`}>
   {#if media}
     <svelte:component this={components.media} {...media} />
   {/if}

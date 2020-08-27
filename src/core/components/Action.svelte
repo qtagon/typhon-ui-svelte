@@ -31,6 +31,7 @@
   href={url}
   name={title}
   aria-label={title}
+  target="_blank"
   rel="noopener noreferrer">
   {#if icon}
     <svelte:component this={components.icon} {...icon} />

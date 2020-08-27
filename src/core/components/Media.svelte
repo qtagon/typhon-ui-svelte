@@ -14,12 +14,14 @@
 
   export let title: string = '';
   export let subtitle: string = '';
+  export let classified: string = '';
   export let description: string = '';
   export let image: Image;
   export let actions: Array<Action> = [];
 </script>
 
 <style type="text/scss">
+  @import './scss/constraints.scss';
   @import './scss/fonts.scss';
 
   .media {
@@ -53,7 +55,7 @@
   }
 </style>
 
-<div class="media">
+<div class={`media ${classified}`}>
   {#if image}
     <svelte:component this={components.image} {...image} />
   {/if}

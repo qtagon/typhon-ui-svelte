@@ -14,11 +14,20 @@ export class Action extends Component {
 
   /**
    *
-   * @param {string} url
+   * @param {string} title
    */
   public setIcon(title: string = ''): Icon {
     const icon = new Icon(title);
     this.icon = icon;
     return icon;
+  }
+
+  /**
+   *
+   * @param {string} url
+   */
+  public setUrl(url: string = ''): this {
+    this.url = url;
+    return this;
   }
 }

@@ -23,8 +23,8 @@
     display: flex;
     flex-direction: column;
     background: #0659fd;
-    height: 100%;
     padding: 3.625rem;
+    flex: 1 1 100%;
 
     & > .option {
       cursor: pointer;
@@ -36,16 +36,23 @@
       justify-content: center;
       align-items: center;
 
+      &.active,
+      &:hover,
+      &:focus,
+      &:active {
+        background: rgba(255, 255, 255, 1);
+
+        & > :global(svg > path) {
+          fill: #0659fd;
+        }
+      }
+
       &:not(:first-child) {
         margin-top: 2.5rem;
       }
 
       & > :global(svg > path) {
         fill: #fff;
-      }
-
-      &.active {
-        color: #1e1f20;
       }
     }
   }

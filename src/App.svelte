@@ -48,17 +48,14 @@
 
   let ccontainer = dynamic
     .onColumn('left')
-    .setStyle('padding: 2.938rem;')
+    .setStyle('padding: 2.938rem; flex-basis: 18%')
     .setRow('content')
     .setClassified('direction-column')
     .setContainer('search');
 
   ccontainer.setSearch('Search in news...').setEvent('search');
   const tabs = ccontainer.setTabs('News');
-  tabs
-    .setOption('United States')
-    .setClassified('active')
-    .setEvent('search', { country: 'us' });
+  tabs.setOption('United States').setEvent('search', { country: 'us' });
   tabs.setOption('Russia').setEvent('search', { country: 'ru' });
   tabs.setOption('Ukraine').setEvent('search', { country: 'ua' });
   tabs.setOption('Romania').setEvent('search', { country: 'ro' });
@@ -78,6 +75,7 @@
       data.forEach((e) => {
         ocontainer
           .setMedia(`${e.first_name} ${e.last_name}`, `${e.email}`)
+          .setClassified('background-white padding-default round')
           .setImage(e.avatar, SIZE.SMALL);
       });
 
@@ -87,32 +85,41 @@
   /**
    * Functions
    */
-  const searchNews = (q: string = '', country: string = 'us') => {
+  const clear = () => (dynamic = dynamic);
+  const searchNews = (
+    q: string = '',
+    country: string = 'us',
+    pageSize: string = '50',
+    apiKey: string = '7c41da8c4a554de095aa8860ec8d7b0e'
+  ) => {
     const params = new URLSearchParams({
-      apiKey: '7c41da8c4a554de095aa8860ec8d7b0e',
+      apiKey,
       country,
       q,
-      pageSize: '50',
+      pageSize,
     }).toString();
 
     ccontainer.clear('card');
-    dynamic = dynamic;
+    clear();
 
     fetch(`http://newsapi.org/v2/top-headlines?${params}`)
       .then((r) => r.json())
       .then(({ articles }) => {
-        articles.forEach((e) => {
-          const card = ccontainer.setCard(
-            `${e.title}`,
-            `${e.description || ''}`
-          );
+        articles.forEach((e: any) => {
+          const card = ccontainer
+            .setCard(`${e.title}`, `${e.description || ''}`)
+            .setClassified('background-white padding-default round');
+
           card.setImage(e.urlToImage || picture);
+
           card
             .setAction('Read More')
+            .setUrl(e.url)
             .setClassified('transparent bordered')
             .setIcon('share');
         });
-        dynamic = dynamic;
+
+        clear();
       });
   };
   searchNews();
@@ -128,6 +135,7 @@
 </script>
 
 <style type="text/scss">
+  @import './core/components/scss/global.scss';
   @import './core/components/scss/scroller.scss';
   @import './core/components/scss/fonts.scss';
   @import './core/components/scss/alignment.scss';

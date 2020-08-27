@@ -58,6 +58,10 @@
     border-radius: 0.75rem;
   }
 
+  label {
+    width: 100%;
+  }
+
   input {
     outline: none;
     border: none;
@@ -91,13 +95,18 @@
 </style>
 
 <div class={`search`}>
-  <input
-    placeholder={title}
-    class={`display ${alignment}`}
-    {value}
-    name="search"
-    on:input={onInput}
-    autocomplete="on" />
+  <label for="search">
+    <input
+      placeholder={title}
+      class={`display ${alignment}`}
+      {value}
+      name="search"
+      id="search"
+      type="search"
+      on:input={onInput}
+      aria-label="Search through site content"
+      autocomplete="on" />
+  </label>
   {#if actions.length}
     {#each actions as action}
       <svelte:component this={components.action} {...action} />

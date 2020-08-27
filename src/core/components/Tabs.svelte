@@ -13,6 +13,7 @@
   export let subtitle: string = '';
   export let options: Array<Option> = [];
   export let event: Event;
+  let identifier: string = options?.find((e) => e)?.identifier || '';
 
   /**
    * Functions
@@ -22,9 +23,10 @@
     return;
   };
 
-  const onClick = ({ event }) => {
-    const { name, parameters } = event;
-    emit(name, { title, parameters });
+  const onClick = (option: Option) => {
+    const { name, parameters } = option.event;
+    emit(name, { title, parameters, identifier: option.identifier });
+    identifier = option.identifier;
   };
 </script>
 
@@ -41,7 +43,10 @@
       cursor: pointer;
       color: #8f92a1;
 
-      &.active {
+      &.active,
+      &:hover,
+      &:focus,
+      &:active {
         color: #1e1f20;
       }
 
@@ -59,7 +64,7 @@
 <div class={`tabs`}>
   {#each options as option (option.identifier)}
     <div
-      class={`option h4 ${option.classified}`}
+      class={`option h4 ${option.classified} ${option.identifier === identifier ? 'active' : ''}`}
       on:click={() => onClick(option)}>
       {option.title}
     </div>

@@ -36,8 +36,9 @@
     href={url}
     class={`${size} ${classified}`}
     target="_blank"
-    aria-label={title}
+    aria-label={title || url}
+    title={title || url}
     rel="noopener noreferrer">
-    <img src={url} alt={title} class={`${classified} ${size}`} />
+    <img src={url} alt={title || url} class={`${classified} ${size}`} />
   </a>
 </div>
