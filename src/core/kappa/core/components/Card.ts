@@ -1,15 +1,12 @@
-import { Component } from '../base/Component';
-import { SIZE } from '../interfaces/index';
+import { Component } from '../Component';
+import { SIZE } from '../enums';
 import { Image } from './Image';
-import { Action } from './Action';
 import { Media } from './Media';
+import { Actionable } from '../mixins';
 
-export class Card extends Component {
+export class Card extends Actionable(Component) {
   type: string = 'card';
   protected media: Media;
-
-  protected actions: Array<Action>;
-  private iactions: Map<string, Action>;
 
   protected images: Array<Image>;
   private iimages: Map<string, Image>;
@@ -23,8 +20,6 @@ export class Card extends Component {
     super();
     super.title = title;
     super.subtitle = subtitle;
-    this.actions = [];
-    this.iactions = new Map();
     this.images = [];
     this.iimages = new Map();
   }
@@ -50,17 +45,5 @@ export class Card extends Component {
     const media = new Media(title, subtitle);
     this.media = media;
     return media;
-  }
-
-  /**
-   *
-   * @param {string} url
-   * @param {SIZE} size
-   */
-  public setAction(title: string = '', size: SIZE = SIZE.SMALL): Action {
-    const action = new Action(title, size);
-    this.actions.push(action);
-    this.iactions.set(action.identifier, action);
-    return action;
   }
 }

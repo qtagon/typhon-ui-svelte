@@ -1,7 +1,6 @@
 <script lang="ts">
-  import type { Image } from '../kappa/components/Image';
-  import type { Option } from '../kappa/components/Option';
-  import type { Event } from '../kappa/base/Event';
+  import type { Image, Option } from '../kappa/core/components';
+  import type { Event } from '../kappa/core';
 
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
@@ -10,9 +9,7 @@
    * Props
    */
   export let title: string = '';
-  export let subtitle: string = '';
   export let options: Array<Option> = [];
-  export let event: Event;
   let identifier: string = options?.find((e) => e)?.identifier || '';
 
   /**

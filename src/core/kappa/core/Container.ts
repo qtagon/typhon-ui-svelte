@@ -1,15 +1,16 @@
-import { ALIGNMENT, Element, POSITION, SIZE } from '../interfaces/index';
+import type { Element } from './interfaces';
+import { ALIGNMENT, POSITION, SIZE } from './enums';
 import type { Component } from './Component';
 
-import { Media } from '../components/Media';
-import { Card } from '../components/Card';
-import { Action } from '../components/Action';
-import { Image } from '../components/Image';
-import { Notification } from '../components/Notification';
-import { Search } from '../components/Search';
-import { Tabs } from '../components/Tabs';
-import { Menu } from '../components/Menu';
-import { Title } from '../components/Title';
+import { Media } from './components/Media';
+import { Card } from './components/Card';
+import { Action } from './components/Action';
+import { Image } from './components/Image';
+import { Notification } from './components/Notification';
+import { Search } from './components/Search';
+import { Tabs } from './components/Tabs';
+import { Menu } from './components/Menu';
+import { Title } from './components/Title';
 
 import Helper from './Helper';
 

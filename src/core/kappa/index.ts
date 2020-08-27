@@ -1,9 +1,4 @@
-import { Row } from './base/Row';
-import { Column } from './base/Column';
-import { Component } from './base/Component';
-import { SIZE, ALIGNMENT } from './interfaces/index';
-
-export { Row, Component, SIZE, ALIGNMENT, Column };
+import { Column } from './core';
 
 /**
  * Main generator
@@ -20,10 +15,18 @@ class Kappa {
     this.icolumns = new Map();
   }
 
+  /**
+   *
+   */
   public getColumns(): Array<Column> {
     return this.columns;
   }
 
+  /**
+   *
+   * @param {string} identifier - column identifier
+   * @returns {Kappa} - instance
+   */
   public setColumn(identifier: string = ''): this {
     const column = new Column(identifier);
     this.columns.push(column);
@@ -31,10 +34,16 @@ class Kappa {
     return this;
   }
 
+  /**
+   *
+   * @param identifier - column identifier
+   * @returns {Column} - Column instance
+   */
   public onColumn(identifier: string = ''): Column {
     const column = this.icolumns.get(identifier);
     return column;
   }
 }
 
+export * from './core/enums';
 export default Kappa;

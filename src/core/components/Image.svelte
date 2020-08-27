@@ -1,7 +1,5 @@
 <script lang="ts">
-  import type { Image } from '../kappa/components/Image';
-  import type { Action } from '../kappa/components/Action';
-  import { SIZE, ALIGNMENT } from '../kappa/interfaces/index';
+  import { SIZE, ALIGNMENT } from '../kappa';
 
   export let url: string = '';
   export let title: string = '';

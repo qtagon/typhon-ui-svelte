@@ -1,9 +1,9 @@
-import { Component } from '../base/Component';
-import type { SIZE } from '../interfaces/index';
+import { Component } from '../Component';
+import type { SIZE } from '../enums/index';
 import { Icon } from './Icon';
 
-export class Button extends Component {
-  type: string = 'button';
+export class Action extends Component {
+  type: string = 'action';
   protected icon: Icon;
 
   constructor(title: string, size: SIZE) {
@@ -14,11 +14,20 @@ export class Button extends Component {
 
   /**
    *
-   * @param {string} url
+   * @param {string} title
    */
   public setIcon(title: string = ''): Icon {
     const icon = new Icon(title);
     this.icon = icon;
     return icon;
+  }
+
+  /**
+   *
+   * @param {string} url
+   */
+  public setUrl(url: string = ''): this {
+    this.url = url;
+    return this;
   }
 }

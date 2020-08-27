@@ -1,7 +1,5 @@
 <script lang="ts">
-  import type { Image } from '../kappa/components/Image';
-  import type { Action } from '../kappa/components/Action';
-  import type { Media } from '../kappa/components/Media';
+  import type { Media, Action, Image } from '../kappa/core/components';
 
   /**
    * Components

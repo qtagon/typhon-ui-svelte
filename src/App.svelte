@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Kappa, { SIZE, ALIGNMENT, Column } from './core/kappa';
+  import Kappa, { SIZE } from './core/kappa';
 
   /**
    * Components
@@ -73,10 +73,13 @@
     .then((r) => r.json())
     .then(({ data }) => {
       data.forEach((e) => {
-        ocontainer
+        const media = ocontainer
           .setMedia(`${e.first_name} ${e.last_name}`, `${e.email}`)
-          .setClassified('background-white padding-default round')
-          .setImage(e.avatar, SIZE.SMALL);
+          .setClassified('background-white padding-default round');
+
+        media.setAction('Follow').setClassified('dark').setIcon('check');
+
+        media.setImage(e.avatar, SIZE.SMALL);
       });
 
       dynamic = dynamic;
@@ -139,75 +142,6 @@
   @import './core/components/scss/scroller.scss';
   @import './core/components/scss/fonts.scss';
   @import './core/components/scss/alignment.scss';
-
-  :global(html) {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background: #f7f7f7;
-  }
-
-  :global(body) {
-    display: flex;
-    flex: 1;
-    margin: 0;
-    padding: 0;
-  }
-
-  main {
-    z-index: auto;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-    align-items: flex-start;
-  }
-
-  .column {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 100%;
-    min-height: 0;
-    position: relative;
-
-    &.flex-auto {
-      flex: 0 1 auto;
-    }
-  }
-
-  .row {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    & > .scroller {
-      position: relative;
-      height: 100%;
-    }
-
-    & .container {
-      display: flex;
-      flex: 1 1 100%;
-      flex-direction: column;
-      height: 100%;
-      width: 100%;
-
-      & > :global(div) {
-        &:not(:last-child) {
-          margin-bottom: 1.875rem;
-        }
-      }
-    }
-  }
 </style>
 
 <main>

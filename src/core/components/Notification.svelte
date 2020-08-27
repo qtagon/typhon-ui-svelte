@@ -1,8 +1,10 @@
 <script lang="ts">
-  import type { Image } from '../kappa/components/Image';
-  import type { Action } from '../kappa/components/Action';
-  import type { Indicator } from '../kappa/components/Indicator';
-  import type { Button } from '../kappa/components/Button';
+  import type {
+    Button,
+    Image,
+    Action,
+    Indicator,
+  } from '../kappa/core/components';
 
   /**
    * Components
@@ -54,7 +56,7 @@
     }
 
     &.buttons {
-      margin: 1.250rem 0 0 0;
+      margin: 1.25rem 0 0 0;
     }
 
     & > :global(button:not(:last-child)) {

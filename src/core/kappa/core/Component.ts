@@ -1,4 +1,5 @@
-import { Element, ALIGNMENT, POSITION, SIZE } from '../interfaces/index';
+import type { Element } from './interfaces';
+import { ALIGNMENT, POSITION, SIZE } from './enums';
 import Helper from './Helper';
 import { Event } from './Event';
 
@@ -40,6 +41,11 @@ export class Component implements Element {
 
   public setAlignment(alignment: ALIGNMENT = ALIGNMENT.NONE): this {
     this.alignment = alignment;
+    return this;
+  }
+
+  public setPosition(position: POSITION = POSITION.NONE): this {
+    this.position = position;
     return this;
   }
 

@@ -1,4 +1,5 @@
-import { ALIGNMENT, Element, POSITION, SIZE } from '../interfaces/index';
+import type { Element } from './interfaces';
+import { ALIGNMENT, POSITION, SIZE } from './enums';
 import { Container } from './Container';
 import Helper from './Helper';
 

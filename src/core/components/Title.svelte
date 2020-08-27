@@ -8,7 +8,6 @@
   @import './scss/alignment.scss';
 </style>
 
-
 {#if title}
   <div class={`${classified}`}>{title}</div>
 {/if}

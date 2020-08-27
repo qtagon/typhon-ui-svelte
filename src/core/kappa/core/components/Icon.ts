@@ -1,4 +1,4 @@
-import { Component } from '../base/Component';
+import { Component } from '../Component';
 
 export class Icon extends Component {
   type: string = 'icon';

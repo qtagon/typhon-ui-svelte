@@ -1,5 +1,5 @@
-import { Component } from '../base/Component';
-import type { SIZE } from '../interfaces/index';
+import { Component } from '../Component';
+import type { SIZE } from '../enums/index';
 
 export class Image extends Component {
   type: string = 'image';

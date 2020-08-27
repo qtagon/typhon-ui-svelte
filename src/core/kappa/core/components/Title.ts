@@ -1,4 +1,4 @@
-import { Component } from '../base/Component';
+import { Component } from '../Component';
 
 export class Title extends Component {
   type: string = 'title';

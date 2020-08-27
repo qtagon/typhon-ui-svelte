@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Image } from '../kappa/components/Image';
-  import type { Action } from '../kappa/components/Action';
+  import type { Action, Image } from '../kappa/core/components';
+  import { POSITION, ALIGNMENT } from '../kappa';
 
   /**
    * Components
@@ -18,6 +18,8 @@
   export let description: string = '';
   export let image: Image;
   export let actions: Array<Action> = [];
+  export let alignment: ALIGNMENT = ALIGNMENT.NONE;
+  export let position: POSITION = POSITION.NONE;
 </script>
 
 <style type="text/scss">
@@ -26,15 +28,38 @@
 
   .media {
     display: flex;
-  }
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    margin: 0 0.938rem;
-    flex: 1;
-    justify-content: center;
-    overflow: hidden;
+    & > :global(.image) {
+      align-self: initial;
+    }
+
+    &.middle {
+      justify-content: center;
+      align-items: center;
+    }
+
+    &.vertical {
+      flex-direction: column;
+
+      & > .content {
+        margin: 0.938rem 0;
+      }
+
+      &.no-actions {
+        & > .content {
+          margin: 0.938rem 0 0 0;
+        }
+      }
+    }
+
+    & > .content {
+      display: flex;
+      flex-direction: column;
+      margin: 0 0.938rem;
+      flex: 1;
+      justify-content: center;
+      overflow: hidden;
+    }
   }
 
   .actions {
@@ -42,8 +67,12 @@
     justify-content: center;
     align-items: center;
 
-    & > :global(.button:not(:last-child)) {
-      margin: 0 0.938rem 0 0;
+    & > :global(.button) {
+      align-self: initial;
+
+      &:not(:last-child) {
+        margin: 0 0.938rem 0 0;
+      }
     }
   }
 
@@ -55,7 +84,8 @@
   }
 </style>
 
-<div class={`media ${classified}`}>
+<div
+  class={`media ${classified} ${alignment} ${position} ${!actions.length ? 'no-actions' : ''}`}>
   {#if image}
     <svelte:component this={components.image} {...image} />
   {/if}

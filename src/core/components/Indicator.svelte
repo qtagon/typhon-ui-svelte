@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SIZE, ALIGNMENT } from '../kappa/interfaces/index';
+  import { SIZE, ALIGNMENT } from '../kappa';
 
   export let size: SIZE = SIZE.NONE;
   export let classified: string = '';

@@ -1,8 +1,7 @@
 <script lang="ts">
-  import type { Image } from '../kappa/components/Image';
-  import type { Action } from '../kappa/components/Action';
-  import type { Event } from '../kappa/base/Event';
-  import { ALIGNMENT } from '../kappa/interfaces/index';
+  import type { Action } from '../kappa/core/components';
+  import type { Event } from '../kappa/core';
+  import { ALIGNMENT } from '../kappa';
 
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
@@ -21,7 +20,6 @@
   export let value: string = '';
   export let title: string = '';
   export let event: Event;
-  export let subtitle: string = '';
   export let actions: Array<Action> = [];
   export let alignment: ALIGNMENT = ALIGNMENT.NONE;
 

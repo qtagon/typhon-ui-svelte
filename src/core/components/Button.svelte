@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Icon } from '../kappa/components/Icon';
-  import { SIZE, ALIGNMENT } from '../kappa/interfaces/index';
+  import type { Icon } from '../kappa/core/components';
+  import { ALIGNMENT, SIZE } from '../kappa';
 
   /**
    * Components

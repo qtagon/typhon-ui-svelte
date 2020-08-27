@@ -1,4 +1,4 @@
-import { Component } from '../base/Component';
+import { Component } from '../Component';
 import { Option } from './Option';
 
 export class Menu extends Component {

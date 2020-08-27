@@ -1,4 +1,4 @@
-import { Component } from '../base/Component';
+import { Component } from '../Component';
 import { Icon } from './Icon';
 
 export class Option extends Component {

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { Image } from '../kappa/components/Image';
-  import type { Option } from '../kappa/components/Option';
+  import type { Option } from '../kappa/core/components';
 
   /**
    * Components
@@ -11,7 +10,6 @@
   };
 
   export let title: string = '';
-  export let subtitle: string = '';
   export let options: Array<Option> = [];
 </script>
 
