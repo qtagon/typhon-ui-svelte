@@ -7,9 +7,13 @@
    */
   import caction from './Action.svelte';
   import cimage from './Image.svelte';
+  import ccode from './Placeholder/Code.svelte';
   const components = {
     action: caction,
     image: cimage,
+    placeholders: {
+      code: ccode,
+    },
   };
 
   export let title: string = '';
@@ -20,6 +24,7 @@
   export let actions: Array<Action> = [];
   export let alignment: ALIGNMENT = ALIGNMENT.NONE;
   export let position: POSITION = POSITION.NONE;
+  export let placeholder: boolean = false;
 </script>
 
 <style type="text/scss">
@@ -86,6 +91,9 @@
 
 <div
   class={`media ${classified} ${alignment} ${position} ${!actions.length ? 'no-actions' : ''}`}>
+  {#if placeholder}
+    <svelte:component this={components.placeholders.code} />
+  {/if}
   {#if image}
     <svelte:component this={components.image} {...image} />
   {/if}

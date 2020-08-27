@@ -33,6 +33,9 @@
     .setColumn('left-left')
     .setColumn('left')
     .setColumn('right');
+
+  const clear = () => (dynamic = dynamic);
+
   let cccontainer = dynamic
     .onColumn('left-left')
     .setClassified('flex-auto')
@@ -72,6 +75,8 @@
   fetch('https://reqres.in/api/users?page=2')
     .then((r) => r.json())
     .then(({ data }) => {
+      ocontainer.clear('media');
+
       data.forEach((e) => {
         const media = ocontainer
           .setMedia(`${e.first_name} ${e.last_name}`, `${e.email}`)
@@ -82,13 +87,22 @@
         media.setImage(e.avatar, SIZE.SMALL);
       });
 
-      dynamic = dynamic;
+      clear();
     });
+
+  ocontainer
+    .setMedia()
+    .setClassified('background-white padding-default round')
+    .setPlaceholder(true);
+
+  ccontainer
+    .setCard()
+    .setClassified('background-white padding-default round')
+    .setPlaceholder(true);
 
   /**
    * Functions
    */
-  const clear = () => (dynamic = dynamic);
   const searchNews = (
     q: string = '',
     country: string = 'us',
@@ -102,12 +116,11 @@
       pageSize,
     }).toString();
 
-    ccontainer.clear('card');
-    clear();
-
     fetch(`http://newsapi.org/v2/top-headlines?${params}`)
       .then((r) => r.json())
       .then(({ articles }) => {
+        ccontainer.clear('card');
+
         articles.forEach((e: any) => {
           const card = ccontainer
             .setCard(`${e.title}`, `${e.description || ''}`)

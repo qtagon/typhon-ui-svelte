@@ -16,6 +16,7 @@ export class Component implements Element {
   url: string;
   style: string;
   event: Event;
+  placeholder: boolean = false;
 
   constructor(identifier: string = '') {
     this.identifier = identifier || Helper.guid();
@@ -27,6 +28,7 @@ export class Component implements Element {
     this.position = POSITION.HORIZONTAL;
     this.style = '';
     this.event = new Event();
+    this.placeholder = false;
   }
 
   /**
@@ -76,6 +78,11 @@ export class Component implements Element {
 
   public setDescription(description: string): this {
     this.description = description;
+    return this;
+  }
+
+  public setPlaceholder(enabled: boolean = false): this {
+    this.placeholder = enabled;
     return this;
   }
 }

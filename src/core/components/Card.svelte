@@ -7,10 +7,14 @@
   import caction from './Action.svelte';
   import cmedia from './Media.svelte';
   import cimage from './Image.svelte';
+  import ccode from './Placeholder/Code.svelte';
   const components = {
     action: caction,
     media: cmedia,
     image: cimage,
+    placeholders: {
+      code: ccode,
+    },
   };
 
   export let title: string = '';
@@ -19,6 +23,7 @@
   export let images: Array<Image> = [];
   export let media: Media;
   export let actions: Array<Action> = [];
+  export let placeholder: boolean = false;
 </script>
 
 <style type="text/scss">
@@ -98,6 +103,9 @@
 </style>
 
 <div class={`card ${classified}`}>
+  {#if placeholder}
+    <svelte:component this={components.placeholders.code} />
+  {/if}
   {#if media}
     <svelte:component this={components.media} {...media} />
   {/if}
