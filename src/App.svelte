@@ -45,15 +45,15 @@
     .setContainer('csearch');
 
   const menu = cccontainer.setMenu();
-  menu.setOption().setIcon('home');
-  menu.setOption().setIcon('calendar');
-  menu.setOption().setIcon('message');
-  menu.setOption().setIcon('user');
-  menu.setOption().setIcon('logout');
+  menu.setOption().setIcon('home').setWidth(24).setHeight(24);
+  menu.setOption().setIcon('calendar').setWidth(24).setHeight(24);
+  menu.setOption().setIcon('message').setWidth(24).setHeight(24);
+  menu.setOption().setIcon('user').setWidth(24).setHeight(24);
+  menu.setOption().setIcon('logout').setWidth(24).setHeight(24);
 
   let ccontainer = dynamic
     .onColumn('left')
-    .setStyle('padding: 2.938rem; flex-basis: 18%')
+    .setStyle('padding: 2.938rem 2.938rem 0 2.938rem; flex-basis: 18%')
     .setRow('content')
     .setClassified('direction-column')
     .setContainer('search');
@@ -67,7 +67,7 @@
 
   let ocontainer = dynamic
     .onColumn('right')
-    .setStyle('padding: 2.938rem;')
+    .setStyle('padding: 2.938rem 2.938rem 0 2.938rem;')
     .setRow('content')
     .setClassified('direction-column')
     .setContainer('search');
