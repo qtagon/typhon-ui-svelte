@@ -12,6 +12,7 @@ import { Search } from './Search';
 import { Tabs } from './Tabs';
 import { Subject } from './Subject';
 import { Message } from './Message';
+import { Modal } from './Modal';
 
 export {
   Action,
@@ -28,4 +29,5 @@ export {
   Tabs,
   Subject,
   Message,
+  Modal
 };

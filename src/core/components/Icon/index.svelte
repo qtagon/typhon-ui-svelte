@@ -1,19 +1,22 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
   import * as icons from './icons';
 
-  // Props
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+
+  /**
+   * Properties
+   */
   export let title: string = '';
   export let color: string = '#ffffff';
   export let width: number = 14;
   export let height: number = 14;
 
-  // Events
-  const dispatch = createEventDispatcher();
-
-  // Handlers
-  const click = () => {
-    dispatch('clicked', {
+  /**
+   * Functions
+   */
+  const onClick = () => {
+    dispatch('click', {
       name,
     });
   };
@@ -24,7 +27,7 @@
 </style>
 
 <svg
-  on:click={click}
+  on:click={onClick}
   width={icons[title].width}
   height={icons[title].height}
   viewBox={`0 0 ${icons[title].width} ${icons[title].height}`}

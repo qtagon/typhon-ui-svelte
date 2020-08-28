@@ -14,6 +14,7 @@
   import Menu from './core/components/Menu.svelte';
   import Subject from './core/components/Subject.svelte';
   import Message from './core/components/Message.svelte';
+  import Modal from './core/components/Modal.svelte';
 
   const components = {
     media: Media,
@@ -26,6 +27,7 @@
     menu: Menu,
     subject: Subject,
     message: Message,
+    modal: Modal,
   };
 
   const picture =
@@ -72,7 +74,7 @@
     .setClassified('direction-column')
     .setContainer('search');
 
-  ocontainer.setTitle('Top Writers').setClassified('h3');
+  ocontainer.setSubject('Top Writers').setClassified('h3');
 
   fetch('https://reqres.in/api/users?page=2')
     .then((r) => r.json())
@@ -140,7 +142,7 @@
             .setCard(`${e.title}`, `${e.description || ''}`)
             .setClassified('background-white padding-default round');
 
-          card.setImage(e.urlToImage || picture);
+          card.setImage(e.urlToImage || picture).setTitle(e.title);
 
           card
             .setAction('Read More')
@@ -170,6 +172,13 @@
   @import './core/components/scss/fonts.scss';
   @import './core/components/scss/alignment.scss';
 </style>
+
+{#each dynamic.getComponents('modal') as component (component.identifier)}
+  <svelte:component
+    this={components[component.type]}
+    on:search={onSearchEvent}
+    {...component} />
+{/each}
 
 <main>
   {#each dynamic.getColumns() as column (column.identifier)}
