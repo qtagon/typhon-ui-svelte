@@ -5,6 +5,8 @@
   // Props
   export let title: string = '';
   export let color: string = '#ffffff';
+  export let width: number = 14;
+  export let height: number = 14;
 
   // Events
   const dispatch = createEventDispatcher();
@@ -27,6 +29,7 @@
   height={icons[title].height}
   viewBox={`0 0 ${icons[title].width} ${icons[title].height}`}
   fill="none"
+  style={`width: ${width || icons[title].width}px; height: ${height || icons[title].height}px;`}
   xmlns="http://www.w3.org/2000/svg">
   {#each icons[title].paths as { d }, i}
     <path

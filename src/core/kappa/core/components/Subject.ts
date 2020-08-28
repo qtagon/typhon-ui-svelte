@@ -1,7 +1,7 @@
 import { Component } from '../Component';
 
-export class Title extends Component {
-  type: string = 'title';
+export class Subject extends Component {
+  type: string = 'subject';
 
   /**
    *

@@ -1,15 +1,17 @@
 import { Component } from '../Component';
-import type { SIZE } from '../enums/index';
+import { SIZE } from '../enums';
 import { Icon } from './Icon';
 
 export class Action extends Component {
   type: string = 'action';
+  url: string = '';
   protected icon: Icon;
 
-  constructor(title: string, size: SIZE) {
+  constructor(title: string, size: SIZE = SIZE.NONE) {
     super();
     super.title = title;
     super.size = size;
+    this.url = '';
   }
 
   /**

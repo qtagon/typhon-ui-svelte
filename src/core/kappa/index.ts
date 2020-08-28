@@ -1,13 +1,13 @@
 import { Column } from './core';
 
 /**
- * Main generator
+ * Kappa class
  */
 class Kappa {
-  protected columns: Array<Column>;
-  private icolumns: Map<string, Column>;
+  public title: string = 'Kappa';
 
-  protected title: string;
+  private columns: Array<Column>;
+  private icolumns: Map<string, Column>;
 
   constructor(title: string = '') {
     this.title = title;
@@ -45,5 +45,8 @@ class Kappa {
   }
 }
 
+/**
+ * Export
+ */
 export * from './core/enums';
 export default Kappa;

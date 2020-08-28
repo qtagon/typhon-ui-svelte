@@ -37,6 +37,6 @@
     aria-label={title || url}
     title={title || url}
     rel="noopener noreferrer">
-    <img src={url} alt={title || url} class={`${classified} ${size}`} />
+    <img src={url} alt={title || url} class={`${classified} ${size}`} loading="lazy" />
   </a>
 </div>

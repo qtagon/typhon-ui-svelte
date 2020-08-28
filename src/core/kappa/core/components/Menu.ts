@@ -4,7 +4,7 @@ import { Option } from './Option';
 export class Menu extends Component {
   type: string = 'menu';
 
-  protected options: Array<Option>;
+  private options: Array<Option>;
   private ioptions: Map<string, Option>;
 
   /**

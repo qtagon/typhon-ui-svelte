@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Kappa, { SIZE } from './core/kappa';
+  import Kappa, { ALIGNMENT, SIZE } from './core/kappa';
 
   /**
    * Components
@@ -12,7 +12,8 @@
   import Search from './core/components/Search.svelte';
   import Tabs from './core/components/Tabs.svelte';
   import Menu from './core/components/Menu.svelte';
-  import Title from './core/components/Title.svelte';
+  import Subject from './core/components/Subject.svelte';
+  import Message from './core/components/Message.svelte';
 
   const components = {
     media: Media,
@@ -23,7 +24,8 @@
     search: Search,
     tabs: Tabs,
     menu: Menu,
-    title: Title,
+    subject: Subject,
+    message: Message,
   };
 
   const picture =
@@ -120,6 +122,18 @@
       .then((r) => r.json())
       .then(({ articles }) => {
         ccontainer.clear('card');
+
+        if (!articles.length) {
+          ccontainer
+            .setMessage(
+              `Zero... nothing... nada... zilch... nix!`,
+              `Sorry, but we couldn't find anything! Please try another search term.`
+            )
+            .setAlignment(ALIGNMENT.MIDDLE)
+            .setClassified('background-white padding-default round');
+        }
+
+        if (articles.length) ccontainer.clear('message');
 
         articles.forEach((e: any) => {
           const card = ccontainer

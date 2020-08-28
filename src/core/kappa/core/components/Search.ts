@@ -1,17 +1,15 @@
 import { Component } from '../Component';
-import { Actionable } from '../mixins';
+import { Actionable, Eventable } from '../mixins';
 
-export class Search extends Actionable(Component) {
+export class Search extends Eventable(Actionable(Component)) {
   type: string = 'search';
 
   /**
    *
    * @param {string} title
-   * @param {string} subtitle
    */
-  constructor(title: string, subtitle: string) {
+  constructor(title: string) {
     super();
     super.title = title;
-    super.subtitle = subtitle;
   }
 }

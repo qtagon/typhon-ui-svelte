@@ -1,86 +1,113 @@
 import type { Element } from './interfaces';
 import { ALIGNMENT, POSITION, SIZE } from './enums';
 import Helper from './Helper';
-import { Event } from './Event';
 
+/**
+ * Component class
+ */
 export class Component implements Element {
   identifier: string;
-  type: string = 'component';
+  type: string;
   title: string;
-  subtitle: string;
-  description: string;
   classified: string;
   alignment: ALIGNMENT;
   position: POSITION;
-  size: SIZE = SIZE.NONE;
-  url: string;
+  size: SIZE;
   style: string;
-  event: Event;
-  placeholder: boolean = false;
+  placeholder: boolean;
 
+  /**
+   * constructor
+   * @param identifier
+   */
   constructor(identifier: string = '') {
     this.identifier = identifier || Helper.guid();
+    this.type = '';
     this.title = '';
-    this.subtitle = '';
     this.classified = '';
-    this.description = '';
-    this.alignment = ALIGNMENT.LEFT;
-    this.position = POSITION.HORIZONTAL;
+    this.alignment = ALIGNMENT.NONE;
+    this.position = POSITION.NONE;
+    this.size = SIZE.NONE;
     this.style = '';
-    this.event = new Event();
     this.placeholder = false;
   }
 
   /**
-   * Set event of the component
-   * @param {string} name - name of the event to be emitted
-   * @param {any} parameters - parameters of the event that should be forwarded
+   * identifier setter
+   * @param {string} identifier
    */
-  public setEvent(name: string = '', parameters: any = ''): this {
-    this.event = new Event(name, parameters);
+  public setIdentifier(identifier: string): this {
+    this.identifier = identifier;
     return this;
   }
 
+  /**
+   * type setter
+   * @param {string} type
+   */
+  public setType(type: string = ''): this {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * title setter
+   * @param {string} title
+   */
+  public setTitle(title: string = ''): this {
+    this.title = title;
+    return this;
+  }
+
+  /**
+   * classified setter
+   * @param {string} classified
+   */
+  public setClassified(classified: string = ''): this {
+    this.classified = classified;
+    return this;
+  }
+
+  /**
+   * alignment setter
+   * @param {ALIGNMENT} alignment
+   */
   public setAlignment(alignment: ALIGNMENT = ALIGNMENT.NONE): this {
     this.alignment = alignment;
     return this;
   }
 
+  /**
+   * position setter
+   * @param {POSITION} position
+   */
   public setPosition(position: POSITION = POSITION.NONE): this {
     this.position = position;
     return this;
   }
 
+  /**
+   * size setter
+   * @param {SIZE} size
+   */
   public setSize(size: SIZE = SIZE.NONE): this {
     this.size = size;
     return this;
   }
 
+  /**
+   * style setter
+   * @param {string} style
+   */
   public setStyle(style: string = ''): this {
     this.style = style;
     return this;
   }
 
-  public setClassified(classified: string): this {
-    this.classified = classified;
-    return this;
-  }
-
-  public setTitle(title: string): this {
-    this.title = title;
-    return this;
-  }
-
-  public setSubtitle(subtitle: string): this {
-    this.subtitle = subtitle;
-    return this;
-  }
-
-  public setDescription(description: string): this {
-    this.description = description;
-    return this;
-  }
-
+  /**
+   * placeholder setter
+   * @param {boolean} enabled
+   */
   public setPlaceholder(enabled: boolean = false): this {
     this.placeholder = enabled;
     return this;

@@ -6,6 +6,7 @@ import { Actionable } from '../mixins';
 
 export class Card extends Actionable(Component) {
   type: string = 'card';
+  subtitle: string = '';
   protected media: Media;
 
   protected images: Array<Image>;
@@ -19,7 +20,7 @@ export class Card extends Actionable(Component) {
   constructor(title: string, subtitle: string) {
     super();
     super.title = title;
-    super.subtitle = subtitle;
+    this.subtitle = subtitle;
     this.images = [];
     this.iimages = new Map();
   }

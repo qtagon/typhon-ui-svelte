@@ -1,19 +1,14 @@
 import { Component } from '../Component';
-import type { SIZE } from '../enums/index';
+import { SIZE } from '../enums';
 
 export class Image extends Component {
   type: string = 'image';
-  placeholder: boolean = false;
+  url: string = '';
 
-  constructor(url: string, size: SIZE) {
+  constructor(url: string, size: SIZE = SIZE.NONE) {
     super();
-    super.url = url;
     super.size = size;
+    this.url = url;
     this.placeholder = false;
-  }
-
-  public setPlaceholder(enabled: boolean = false): this {
-    this.placeholder = enabled;
-    return this;
   }
 }

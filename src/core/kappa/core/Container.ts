@@ -1,48 +1,27 @@
-import type { Element } from './interfaces';
-import { ALIGNMENT, POSITION, SIZE } from './enums';
-import type { Component } from './Component';
+import { SIZE } from './enums';
+import {
+  Media,
+  Card,
+  Action,
+  Image,
+  Notification,
+  Search,
+  Tabs,
+  Menu,
+  Subject,
+  Message,
+} from './components';
+import { Component } from '.';
 
-import { Media } from './components/Media';
-import { Card } from './components/Card';
-import { Action } from './components/Action';
-import { Image } from './components/Image';
-import { Notification } from './components/Notification';
-import { Search } from './components/Search';
-import { Tabs } from './components/Tabs';
-import { Menu } from './components/Menu';
-import { Title } from './components/Title';
-
-import Helper from './Helper';
-
-export class Container implements Element {
-  identifier: string;
+export class Container extends Component {
   type: string = 'container';
-  title: string;
-  subtitle: string;
-  description: string;
-  classified: string;
-  alignment: ALIGNMENT;
-  position: POSITION;
-  size: SIZE = SIZE.NONE;
-  url: string;
-  style: string;
 
-  protected components: Array<Component>;
+  private components: Array<Component>;
   private icomponents: Map<string, Component>;
 
   constructor(identifier: string = '') {
-    this.identifier = identifier || Helper.guid();
-    this.title = '';
-    this.subtitle = '';
-    this.description = '';
-    this.classified = '';
-    this.alignment = ALIGNMENT.LEFT;
-    this.position = POSITION.HORIZONTAL;
-    this.style = '';
-
-    /**
-     * Components
-     */
+    super();
+    super.identifier = identifier;
     this.components = [];
     this.icomponents = new Map();
   }
@@ -66,13 +45,11 @@ export class Container implements Element {
     return this;
   }
 
+  /**
+   * Get all components of container
+   */
   public getComponents(): Array<Component> {
     return this.components;
-  }
-
-  public setStyle(style: string = ''): this {
-    this.style = style;
-    return this;
   }
 
   /**
@@ -167,21 +144,29 @@ export class Container implements Element {
   /**
    *
    * @param {string} title
-   * @param {string} subtitle
    */
-  public setSearch(title: string = '', subtitle: string = ''): Search {
-    const search = new Search(title, subtitle);
+  public setSearch(title: string = ''): Search {
+    const search = new Search(title);
     this.setComponent(search);
     return search;
   }
 
   /**
-   * A very dumb component
    * @param {string} title
    */
-  public setTitle(title: string = ''): Title {
-    const titled = new Title(title);
-    this.setComponent(titled);
-    return titled;
+  public setSubject(title: string = ''): Subject {
+    const subject = new Subject(title);
+    this.setComponent(subject);
+    return subject;
+  }
+
+  /**
+   * @param {string} title
+   * @param {string} subtitle
+   */
+  public setMessage(title: string = '', subtitle: string = ''): Message {
+    const message = new Message(title, subtitle);
+    this.setComponent(message);
+    return message;
   }
 }

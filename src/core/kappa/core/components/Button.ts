@@ -1,12 +1,12 @@
 import { Component } from '../Component';
-import type { SIZE } from '../enums/index';
+import { SIZE } from '../enums/index';
 import { Icon } from './Icon';
 
 export class Button extends Component {
   type: string = 'button';
   protected icon: Icon;
 
-  constructor(title: string, size: SIZE) {
+  constructor(title: string, size: SIZE = SIZE.NONE) {
     super();
     super.title = title;
     super.size = size;

@@ -5,6 +5,7 @@ import { Image } from './index';
 
 export class Media extends Actionable(Component) {
   type: string = 'media';
+  subtitle: string = '';
   protected image: Image;
 
   /**
@@ -15,7 +16,7 @@ export class Media extends Actionable(Component) {
   constructor(title: string, subtitle: string) {
     super();
     super.title = title;
-    super.subtitle = subtitle;
+    this.subtitle = subtitle;
   }
 
   /**

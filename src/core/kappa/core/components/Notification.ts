@@ -6,6 +6,8 @@ import { Actionable } from '../mixins';
 
 export class Notification extends Actionable(Component) {
   type: string = 'notification';
+  subtitle: string = '';
+  description: string = '';
   protected image: Image;
   protected indicator: Indicator;
 
@@ -18,8 +20,8 @@ export class Notification extends Actionable(Component) {
   constructor(title: string, subtitle: string, description: string) {
     super();
     super.title = title;
-    super.subtitle = subtitle;
-    super.description = description;
+    this.subtitle = subtitle;
+    this.description = description;
   }
 
   /**

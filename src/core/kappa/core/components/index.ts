@@ -10,7 +10,8 @@ import { Notification } from './Notification';
 import { Option } from './Option';
 import { Search } from './Search';
 import { Tabs } from './Tabs';
-import { Title } from './Title';
+import { Subject } from './Subject';
+import { Message } from './Message';
 
 export {
   Action,
@@ -25,5 +26,6 @@ export {
   Option,
   Search,
   Tabs,
-  Title,
+  Subject,
+  Message,
 };
