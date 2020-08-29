@@ -18,6 +18,8 @@
    * Properties
    */
   export let title: string = '';
+  export let type: string = 'button';
+  export let identifier: string = '';
   export let classified: string = '';
   export let icon: Icon;
   export let alignment: ALIGNMENT = ALIGNMENT.NONE;
@@ -40,7 +42,8 @@
   const onClick = () => {
     if (!event) return;
     const { name, parameters } = event;
-    emit(name, {});
+    emit(name, { name, parameters });
+    emit('event', { name, parameters, type, identifier });
   };
 </script>
 

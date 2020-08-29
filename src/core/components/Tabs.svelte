@@ -39,6 +39,7 @@
     & > .option {
       cursor: pointer;
       color: #8f92a1;
+      margin-bottom: 1.875rem;
 
       &.active,
       &:hover,
@@ -49,7 +50,6 @@
 
       &:not(:last-child) {
         margin-right: 1.875rem;
-        margin-bottom: 1.875rem;
       }
     }
   }

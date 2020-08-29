@@ -48,4 +48,13 @@ export class Column extends Scrollable(Component) {
     const row = this.irows.get(identifier);
     return row;
   }
+
+  /**
+   * Clear all rows
+   */
+  public clear(): this {
+    this.rows = [];
+    this.irows.clear();
+    return this;
+  }
 }

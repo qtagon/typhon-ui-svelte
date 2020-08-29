@@ -10,11 +10,12 @@ import {
   Menu,
   Subject,
   Message,
+  Button,
 } from './components';
 import { Component } from '.';
-import { Scrollable } from './mixins';
+import { Scrollable, Actionable } from './mixins';
 
-export class Container extends Scrollable(Component) {
+export class Container extends Actionable(Scrollable(Component)) {
   type: string = 'container';
 
   private components: Array<Component>;
@@ -61,6 +62,17 @@ export class Container extends Scrollable(Component) {
     this.components = [...this.components, component];
     this.icomponents.set(component.identifier, component);
     return component;
+  }
+
+  /**
+   * Set buttons that the component has
+   * @param {string} title - button title
+   * @param {SIZE} size - size of button
+   */
+  public setButton(title: string = '', size: SIZE = SIZE.SMALL): Button {
+    const button = new Button(title, size);
+    this.setComponent(button);
+    return button;
   }
 
   /**

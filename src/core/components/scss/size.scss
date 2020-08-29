@@ -1,6 +1,6 @@
-.image.none,
-img.none,
-.image > a.none {
+.image.none-size,
+img.none-size,
+.image > a.none-size {
   width: 100%;
   height: 100%;
 }
@@ -10,8 +10,8 @@ img.xxs,
 .image > a.xxs {
   &:not(.wide) {
     width: 1.75rem;
-    height: 1.75rem;
   }
+  height: 1.75rem;
   border-radius: 0.625em;
 }
 
@@ -20,8 +20,8 @@ img.sm,
 .image > a.sm {
   &:not(.wide) {
     width: 3rem;
-    height: 3rem;
   }
+  height: 3rem;
   border-radius: 0.75rem;
 }
 
@@ -30,8 +30,8 @@ img.xs,
 .image > a.xs {
   &:not(.wide) {
     width: 2.375rem;
-    height: 2.375rem;
   }
+  height: 2.375rem;
   border-radius: 0.75rem;
 }
 
@@ -40,8 +40,8 @@ img.md,
 .image > a.md {
   &:not(.wide) {
     width: 4.75rem;
-    height: 4.75rem;
   }
+  height: 4.75rem;
   border-radius: 1.25rem;
 }
 
@@ -50,8 +50,8 @@ img.mmd,
 .image > a.mmd {
   &:not(.wide) {
     width: 5.938rem;
-    height: 5.938rem;
   }
+  height: 5.938rem;
   border-radius: 0.5rem;
 }
 
@@ -60,8 +60,8 @@ img.lg,
 .image > a.lg {
   &:not(.wide) {
     width: 10rem;
-    height: 9.063rem;
   }
+  height: 9.063rem;
   border-radius: 0.5rem;
 }
 
@@ -70,8 +70,8 @@ img.llg,
 .image > a.llg {
   &:not(.wide) {
     width: 12.5rem;
-    height: 12.5rem;
   }
+  height: 12.5rem;
   border-radius: 0.5rem;
 }
 
@@ -80,8 +80,8 @@ img.xl,
 .image > a.xl {
   &:not(.wide) {
     width: 21.875rem;
-    height: 19.063rem;
   }
+  height: 19.063rem;
   border-radius: 0.5rem;
 }
 

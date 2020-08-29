@@ -1,6 +1,9 @@
 <script lang="ts">
   import type { Media, Action, Image, Button } from '../kappa/core/components';
 
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+
   /**
    * Components
    */
@@ -27,6 +30,19 @@
   export let actions: Array<Action> = [];
   export let buttons: Array<Button> = [];
   export let placeholder: boolean = false;
+
+  /**
+   * Functions
+   */
+  const emit = (name: string = '', parameters: any) => {
+    if (name) dispatch(name, parameters);
+    return;
+  };
+
+  const onEvent = ({ detail }) => {
+    const { name } = detail;
+    emit(name, detail);
+  };
 </script>
 
 <style type="text/scss">
@@ -152,7 +168,10 @@
   {#if buttons.length}
     <div class="buttons">
       {#each buttons as button}
-        <svelte:component this={components.button} {...button} />
+        <svelte:component
+          this={components.button}
+          {...button}
+          on:event={onEvent} />
       {/each}
     </div>
   {/if}

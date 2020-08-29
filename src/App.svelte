@@ -13,6 +13,7 @@
   import Media from './core/components/Media.svelte';
   import Card from './core/components/Card.svelte';
   import Action from './core/components/Action.svelte';
+  import Button from './core/components/Button.svelte';
   import Image from './core/components/Image.svelte';
   import Notification from './core/components/Notification.svelte';
   import Search from './core/components/Search.svelte';
@@ -34,6 +35,7 @@
     subject: Subject,
     message: Message,
     modal: Modal,
+    button: Button,
   };
 
   /**
@@ -41,6 +43,10 @@
    */
 
   let dynamic = new Typhon('movies-ui').setColumn('cmenu').setColumn('content');
+  const resources: any = {
+    elements: [],
+    element: {},
+  };
 
   /**
    * Menu
@@ -107,7 +113,8 @@
       .setTitle(`${data.title} Poster`);
 
     card
-      .setButton('Interested')
+      .setButton('Read More')
+      .setEvent('element', data)
       .setClassified('transparent bordered')
       .setIcon('check');
 
@@ -116,6 +123,72 @@
      */
 
     dynamic = dynamic;
+  };
+
+  const setMovieView = (
+    data: any,
+    poster: string = 'https://image.tmdb.org/t/p/original'
+  ) => {
+    const column = dynamic.onColumn('content').clear();
+    const container = column.setRow('content').setContainer('content');
+
+    const card = container
+      .setCard(data.title, data.overview)
+      .setClassified('background-white round padding-default');
+    const media = card.setMedia(
+      data.tagline,
+      `${data.status} - ${data.release_date}`
+    );
+    media
+      .setAction('IMDB')
+      .setUrl(`https://www.imdb.com/title/${data.imdb_id}`);
+
+    media.setImage(`${poster}${data.poster_path}`, SIZE.SMALL);
+
+    card
+      .setImage(`${poster}${data.backdrop_path}`, SIZE.EXTRA_LARGE)
+      .setClassified('wide')
+      .setTitle(`${data.title} Hero`);
+
+    if (data?.genres?.length) {
+      data.genres.forEach((genre) => {
+        card.setButton(genre.name).setClassified('transparent bordered');
+      });
+    }
+
+    container.setSubject('Cast').setClassified('h1');
+
+    const containerx = column
+      .setRow('cast')
+      .setContainer('cast')
+      .setClassified('display-grid')
+      .setStyle(
+        `grid-template-columns: repeat(auto-fill, minmax(15.750rem, 1fr)); grid-gap: 1.875rem;`
+      );
+
+    if (data?.credits?.cast?.length) {
+      data.credits.cast.forEach((data) => {
+        containerx
+          .setCard(data.name, `as ${data.character}`)
+          .setClassified('background-white round padding-default')
+          .setImage(`${poster}${data.profile_path}`).setTitle(`${data.name} Picture`)
+      });
+    }
+
+    /**
+     * Update
+     */
+
+    dynamic = dynamic;
+  };
+
+  const item = (id: number = 718444) => {
+    MovieAPI.get(`movie/${id}`, { append_to_response: 'credits' }).then(
+      (data) => {
+        resources.element = data;
+        setMovieView(resources.element);
+      }
+    );
   };
 
   const data = () => {
@@ -132,8 +205,9 @@
     const query = detail?.value || '';
   };
 
-  const ConditionalWrap = ({ condition, wrap, children }) =>
-    condition ? wrap(children) : children;
+  const onElementEvent = ({ detail }) => {
+    if (detail?.parameters?.id) item(detail.parameters.id);
+  };
 </script>
 
 <style type="text/scss">
@@ -165,6 +239,7 @@
                       <svelte:component
                         this={components[component.type]}
                         on:search={onSearchEvent}
+                        on:element={onElementEvent}
                         {...component} />
                     {/each}
                   </Scroller>

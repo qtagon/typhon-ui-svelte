@@ -9,7 +9,7 @@ type Constructor<T = {}> = new (...args: any[]) => T;
  */
 function Eventable<TBase extends Constructor>(Base: TBase) {
   return class extends Base {
-    protected event: Event = new Event();
+    public event: Event = new Event();
 
     /**
      * Set event of the component

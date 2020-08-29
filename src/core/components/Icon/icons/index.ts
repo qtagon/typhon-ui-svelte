@@ -13,3 +13,4 @@ export { default as message } from './message';
 export { default as logout } from './logout';
 export { default as logo } from './logo';
 export { default as email } from './email';
+export { default as imdb } from './imdb';
