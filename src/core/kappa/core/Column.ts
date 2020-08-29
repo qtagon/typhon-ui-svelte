@@ -1,10 +1,11 @@
 import { Row } from './Row';
 import { Component } from '.';
+import { Scrollable } from './mixins';
 
-export class Column extends Component {
+export class Column extends Scrollable(Component) {
   type: string = 'column';
 
-  private rows: Array<Row>;
+  public rows: Array<Row>;
   private irows: Map<string, Row>;
 
   constructor(identifier: string = '') {
@@ -19,6 +20,13 @@ export class Column extends Component {
    */
   public getRows(): Array<Row> {
     return this.rows;
+  }
+
+  /**
+   * Get all irows of column
+   */
+  public getIndexedRows(): Map<string, Row> {
+    return this.irows;
   }
 
   /**

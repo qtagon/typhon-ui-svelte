@@ -1,12 +1,12 @@
-import { Column } from './core';
+import { Column, Container, Row } from './core';
 import type { Component } from './core/Component';
 import { Modal } from './core/components';
 
 /**
- * Kappa class
+ * Typhon class
  */
-class Kappa {
-  public title: string = 'Kappa';
+class Typhon {
+  public title: string = 'Typhon';
 
   private columns: Array<Column>;
   private icolumns: Map<string, Column>;
@@ -14,12 +14,22 @@ class Kappa {
   private components: Array<Component>;
   private icomponents: Map<string, Component>;
 
+  private rows: Array<Row>;
+  private irows: Map<string, Row>;
+
+  private containers: Array<Container>;
+  private icontainers: Map<string, Container>;
+
   constructor(title: string = '') {
     this.title = title;
     this.columns = [];
     this.icolumns = new Map();
     this.components = [];
     this.icomponents = new Map();
+    this.containers = [];
+    this.icontainers = new Map();
+    this.rows = [];
+    this.irows = new Map();
   }
 
   /**
@@ -77,10 +87,51 @@ class Kappa {
     const column = this.icolumns.get(identifier);
     return column;
   }
+
+  /**
+   *
+   * @param identifier - container identifier
+   * @returns {Container} - Container instance
+   */
+  public onContainer(identifier: string = ''): Container {
+    return this.icontainers.get(identifier);
+  }
+
+  /**
+   * Index column rows
+   * @param identifier - column identifier
+   * @returns {this}
+   */
+  public ixColumn(identifier: string = ''): this {
+    const column = this.icolumns.get(identifier);
+    this.rows.push(...column.getRows());
+
+    column
+      .getIndexedRows()
+      .forEach((e: Row) => this.irows.set(e.identifier, e));
+
+    return this;
+  }
+
+  /**
+   * Index row containers
+   * @param identifier - row identifier
+   * @returns {Column} - Column instance
+   */
+  public ixRow(identifier: string = ''): this {
+    const row = this.irows.get(identifier);
+    this.containers.push(...row.getContainers());
+
+    row
+      .getIndexedContainers()
+      .forEach((e: Container) => this.icontainers.set(e.identifier, e));
+
+    return this;
+  }
 }
 
 /**
  * Export
  */
 export * from './core/enums';
-export default Kappa;
+export default Typhon;

@@ -45,8 +45,12 @@
         }
       }
 
-      &:not(:first-child) {
-        margin-top: 2.5rem;
+      &:not(:last-child) {
+        margin-bottom: 2.5rem;
+      }
+
+      &:last-child {
+        margin-top: auto;
       }
 
       & > :global(svg > path) {

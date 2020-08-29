@@ -12,8 +12,9 @@ import {
   Message,
 } from './components';
 import { Component } from '.';
+import { Scrollable } from './mixins';
 
-export class Container extends Component {
+export class Container extends Scrollable(Component) {
   type: string = 'container';
 
   private components: Array<Component>;

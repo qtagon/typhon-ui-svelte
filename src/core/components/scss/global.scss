@@ -41,7 +41,6 @@
   display: flex;
   position: relative;
   flex: 1 1 auto;
-  min-height: 0;
   min-width: 0;
   z-index: 0;
 
@@ -51,6 +50,10 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+
+    &.display-grid {
+      display: grid;
+    }
 
     & > :global(div) {
       &:not(.menu) {

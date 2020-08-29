@@ -1,10 +1,11 @@
 import { Container } from './Container';
 import { Component } from '.';
+import { Scrollable } from './mixins';
 
-export class Row extends Component {
+export class Row extends Scrollable(Component) {
   type: string = 'row';
 
-  private containers: Array<Container>;
+  public containers: Array<Container>;
   private icontainers: Map<string, Container>;
 
   constructor(identifier: string = '') {
@@ -19,6 +20,13 @@ export class Row extends Component {
    */
   public getContainers(): Array<Container> {
     return this.containers;
+  }
+
+  /**
+   * Get all icontainers of row
+   */
+  public getIndexedContainers(): Map<string, Container> {
+    return this.icontainers;
   }
 
   /**

@@ -1,9 +1,10 @@
 <script lang="ts">
-  import type { Media, Action, Image } from '../kappa/core/components';
+  import type { Media, Action, Image, Button } from '../kappa/core/components';
 
   /**
    * Components
    */
+  import cbutton from './Button.svelte';
   import caction from './Action.svelte';
   import cmedia from './Media.svelte';
   import cimage from './Image.svelte';
@@ -12,6 +13,7 @@
     action: caction,
     media: cmedia,
     image: cimage,
+    button: cbutton,
     placeholders: {
       code: ccode,
     },
@@ -23,6 +25,7 @@
   export let images: Array<Image> = [];
   export let media: Media;
   export let actions: Array<Action> = [];
+  export let buttons: Array<Button> = [];
   export let placeholder: boolean = false;
 </script>
 
@@ -43,13 +46,35 @@
         margin: 0 0.625em;
       }
     }
+
+    &.single-line {
+      & > .content {
+        & > .subtitle,
+        & > .title {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .actions,
+  .buttons {
+    display: flex;
+    align-items: center;
+    margin: 1.125rem 0 0 0;
+
+    & > :global(.button:not(:last-child)) {
+      margin-right: 0.938rem;
+    }
   }
 
   .content {
     display: grid;
     flex-direction: column;
     width: 100%;
-    grid-template-columns: repeat(auto-fill, [col] 5.938rem);
+    grid-template-columns: repeat(auto-fill, [col] 100%);
 
     & > .title,
     .subtitle {
@@ -61,20 +86,10 @@
     }
   }
 
-  .actions {
-    display: flex;
-    align-items: center;
-    margin: 1.125rem 0 0 0;
-
-    & > :global(.button:not(:last-child)) {
-      margin-right: 0.938rem;
-    }
-  }
-
   .images {
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(auto-fill, [col] 5.938rem);
+    grid-template-columns: repeat(auto-fill, [col] 100%);
     margin: 1.125rem 0;
 
     &:not(.single) {
@@ -97,7 +112,7 @@
     }
   }
 
-  .display {
+  .subtitle {
     color: #555761;
   }
 </style>
@@ -131,6 +146,13 @@
     <div class="actions">
       {#each actions as action}
         <svelte:component this={components.action} {...action} />
+      {/each}
+    </div>
+  {/if}
+  {#if buttons.length}
+    <div class="buttons">
+      {#each buttons as button}
+        <svelte:component this={components.button} {...button} />
       {/each}
     </div>
   {/if}
