@@ -74,7 +74,7 @@
   const content = dynamic
     .onColumn('content')
     .setScroll(true)
-    .setStyle('padding: 2.938rem 1.938rem 0 1.938rem;')
+    .setStyle('padding: 2.938rem 0.938rem 0 1.938rem;')
     .setRow('search')
     .setContainer('search');
 
@@ -88,23 +88,22 @@
     );
   dynamic.ixColumn('content').ixRow('search').ixRow('data');
 
-  content.setSearch('Search movies ...');
+  content.setSearch('Search movies ...').setEvent('search', { type: 'query' });
   const tabs = content.setTabs('Movies');
-  tabs.setOption('Popular');
-  tabs.setOption('Now Playing');
-  tabs.setOption('Upcoming');
-  tabs.setOption('Top Rated');
+  tabs.setOption('Popular').setEvent('search', { type: 'popular' });
+  tabs.setOption('Now Playing').setEvent('search', { type: 'now_playing' });
+  tabs.setOption('Upcoming').setEvent('search', { type: 'upcoming' });
+  tabs.setOption('Top Rated').setEvent('search', { type: 'top_rated' });
 
   /**
    * Resource
    */
-
+  const containerx = dynamic.onContainer('data');
   const setMovieCard = (
     data: any,
     poster: string = 'https://image.tmdb.org/t/p/w500'
   ) => {
-    const container = dynamic.onContainer('data');
-    const card = container
+    const card = containerx
       .setCard(data.title, data.overview)
       .setClassified('background-white round padding-default single-line');
 
@@ -131,7 +130,6 @@
   ) => {
     const column = dynamic.onColumn('content').clear();
     const container = column.setRow('content').setContainer('content');
-
     const card = container
       .setCard(data.title, data.overview)
       .setClassified('background-white round padding-default');
@@ -156,25 +154,6 @@
       });
     }
 
-    container.setSubject('Cast').setClassified('h1');
-
-    const containerx = column
-      .setRow('cast')
-      .setContainer('cast')
-      .setClassified('display-grid')
-      .setStyle(
-        `grid-template-columns: repeat(auto-fill, minmax(15.750rem, 1fr)); grid-gap: 1.875rem;`
-      );
-
-    if (data?.credits?.cast?.length) {
-      data.credits.cast.forEach((data) => {
-        containerx
-          .setCard(data.name, `as ${data.character}`)
-          .setClassified('background-white round padding-default')
-          .setImage(`${poster}${data.profile_path}`).setTitle(`${data.name} Picture`)
-      });
-    }
-
     /**
      * Update
      */
@@ -191,9 +170,12 @@
     );
   };
 
-  const data = () => {
-    MovieAPI.get('movie/popular').then(({ results }) => {
-      results.forEach((movie) => setMovieCard(movie));
+  const data = (query: string = '', type: string = 'popular') => {
+    const uri = query ? `search/movie` : `movie/${type}`;
+    MovieAPI.get(`${uri}`, { query }).then(({ results }) => {
+      containerx.clear('card');
+      dynamic = dynamic;
+      results.forEach((movie: any) => setMovieCard(movie));
     });
   };
   data();
@@ -202,7 +184,10 @@
    * Functions
    */
   const onSearchEvent = ({ detail }) => {
-    const query = detail?.value || '';
+    if (detail?.parameters?.type && !detail?.value)
+      data('', detail.parameters.type);
+
+    if (detail?.parameters?.type && detail?.value) data(detail.value);
   };
 
   const onElementEvent = ({ detail }) => {
