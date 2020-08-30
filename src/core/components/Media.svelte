@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Action, Image } from '../kappa/core/components';
-  import { POSITION, ALIGNMENT } from '../kappa';
+  import type { Action, Image } from '@qtagon/typhon-ui/lib/core/components';
+  import { POSITION, ALIGNMENT } from '@qtagon/typhon-ui';
 
   /**
    * Components

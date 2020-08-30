@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SIZE, ALIGNMENT, POSITION } from '../kappa';
+  import { SIZE, ALIGNMENT, POSITION } from '@qtagon/typhon-ui';
 
   export let url: string = '';
   export let title: string = '';

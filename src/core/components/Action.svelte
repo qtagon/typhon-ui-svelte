@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Icon } from '../kappa/core/components';
-  import { ALIGNMENT, SIZE } from '../kappa';
+  import type { Icon } from '@qtagon/typhon-ui/lib/core/components';
+  import { ALIGNMENT, SIZE } from '@qtagon/typhon-ui';
 
   /**
    * Components

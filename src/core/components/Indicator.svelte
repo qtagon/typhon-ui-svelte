@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SIZE, ALIGNMENT } from '../kappa';
+  import { SIZE, ALIGNMENT } from '@qtagon/typhon-ui';
 
   export let size: SIZE = SIZE.NONE;
   export let classified: string = '';

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Option } from '../kappa/core/components';
+  import type { Option } from '@qtagon/typhon-ui/lib/core/components';
 
   /**
    * Components

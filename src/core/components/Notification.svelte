@@ -4,7 +4,7 @@
     Image,
     Action,
     Indicator,
-  } from '../kappa/core/components';
+  } from '@qtagon/typhon-ui/lib/core/components';
 
   /**
    * Components

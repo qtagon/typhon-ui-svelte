@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { ALIGNMENT, POSITION, SIZE } from '../kappa';
-  import type { Button } from '../kappa/core/components';
+  import { ALIGNMENT, POSITION, SIZE } from '@qtagon/typhon-ui';
+  import type { Button } from '@qtagon/typhon-ui/lib/core/components';
 
   import { fade } from 'svelte/transition';
   import { createEventDispatcher } from 'svelte';

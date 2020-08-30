@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { Icon } from '../kappa/core/components';
-  import { ALIGNMENT, SIZE } from '../kappa';
-  import type { Event } from '../kappa/core';
+  import type { Icon } from '@qtagon/typhon-ui/lib/core/components';
+  import { ALIGNMENT, SIZE } from '@qtagon/typhon-ui';
+  import type { Event } from '@qtagon/typhon-ui/lib/core';
 
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Image, Option } from '../kappa/core/components';
-  import type { Event } from '../kappa/core';
+  import type { Image, Option } from '@qtagon/typhon-ui/lib/core/components';
+  import type { Event } from '@qtagon/typhon-ui/lib/core';
 
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();

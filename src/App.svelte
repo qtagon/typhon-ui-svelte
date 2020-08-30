@@ -1,6 +1,6 @@
-<script lang="ts">
-  import Typhon, { ALIGNMENT, SIZE } from './core/kappa';
+<script>
   import API from './core/utils/api.request';
+  import { Typhon, SIZE } from '@qtagon/typhon-ui';
 
   const MovieAPI = new API(
     `https://api.themoviedb.org/3/`,
@@ -43,7 +43,7 @@
    */
 
   let dynamic = new Typhon('movies-ui').setColumn('cmenu').setColumn('content');
-  const resources: any = {
+  const resources = {
     elements: [],
     element: {},
   };
@@ -99,10 +99,7 @@
    * Resource
    */
   const containerx = dynamic.onContainer('data');
-  const setMovieCard = (
-    data: any,
-    poster: string = 'https://image.tmdb.org/t/p/w500'
-  ) => {
+  const setMovieCard = (data, poster = 'https://image.tmdb.org/t/p/w500') => {
     const card = containerx
       .setCard(data.title, data.overview)
       .setClassified('background-white round padding-default single-line');
@@ -125,8 +122,8 @@
   };
 
   const setMovieView = (
-    data: any,
-    poster: string = 'https://image.tmdb.org/t/p/original'
+    data,
+    poster = 'https://image.tmdb.org/t/p/original'
   ) => {
     const column = dynamic.onColumn('content').clear();
     const container = column.setRow('content').setContainer('content');
@@ -161,7 +158,7 @@
     dynamic = dynamic;
   };
 
-  const item = (id: number = 718444) => {
+  const item = (id = 718444) => {
     MovieAPI.get(`movie/${id}`, { append_to_response: 'credits' }).then(
       (data) => {
         resources.element = data;
@@ -170,12 +167,12 @@
     );
   };
 
-  const data = (query: string = '', type: string = 'popular') => {
+  const data = (query = '', type = 'popular') => {
     const uri = query ? `search/movie` : `movie/${type}`;
     MovieAPI.get(`${uri}`, { query }).then(({ results }) => {
       containerx.clear('card');
       dynamic = dynamic;
-      results.forEach((movie: any) => setMovieCard(movie));
+      results.forEach((movie) => setMovieCard(movie));
     });
   };
   data();
