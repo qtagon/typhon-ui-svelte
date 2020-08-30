@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Media, Action, Image, Button } from '@qtagon/typhon-ui/lib/core/components';
+  import type { Media, Action, Image, Button } from '@qtagon/typhon-ui';
 
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();

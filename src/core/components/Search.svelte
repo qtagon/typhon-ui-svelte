@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Action } from '@qtagon/typhon-ui/lib/core/components';
+  import type { Action } from '@qtagon/typhon-ui';
   import type { Event } from '@qtagon/typhon-ui/lib/core';
   import { ALIGNMENT } from '@qtagon/typhon-ui';
 

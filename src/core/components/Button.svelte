@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Icon } from '@qtagon/typhon-ui/lib/core/components';
+  import type { Icon } from '@qtagon/typhon-ui';
   import { ALIGNMENT, SIZE } from '@qtagon/typhon-ui';
   import type { Event } from '@qtagon/typhon-ui/lib/core';
 

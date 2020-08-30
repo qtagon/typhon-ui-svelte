@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Image, Option } from '@qtagon/typhon-ui/lib/core/components';
+  import type { Image, Option } from '@qtagon/typhon-ui';
   import type { Event } from '@qtagon/typhon-ui/lib/core';
 
   import { createEventDispatcher } from 'svelte';

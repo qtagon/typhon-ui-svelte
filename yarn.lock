@@ -33,10 +33,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.11.tgz#aeb16f50649a91af79dbe36574b66d0f9e4d9f71"
   integrity sha512-3NsZsJIA/22P3QUyrEDNA2D133H4j224twJrdipXN38dpnIOzAbUDtOwkcJ5pXmn75w7LSQDjA4tO9dm1XlqlA==
 
-"@qtagon/typhon-ui@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@qtagon/typhon-ui/-/typhon-ui-1.5.0.tgz#3c66b9782946d109fb91104b546db5715221ede9"
-  integrity sha512-HGxQg8f4EG0Tz4yt205mEMDjdMtxi6AnK1hBkN0cqeeWi74L1KkHp9LC9WsKDVf0iG1h3TT4HcH6U2t7qxFUfw==
+"@qtagon/typhon-ui@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@qtagon/typhon-ui/-/typhon-ui-1.6.0.tgz#59f9d0ce4377028dceff7a1ed4151c181adf267f"
+  integrity sha512-Zl7v2zum0J7JQm//wvBwZi2xCH9NEPcy/UT82QG0Sg/MXK3zFmdIMsBbfZhd49NGvbquZa4wpwDvqW6W7GwBeQ==
 
 "@rollup/plugin-commonjs@^14.0.0":
   version "14.0.0"

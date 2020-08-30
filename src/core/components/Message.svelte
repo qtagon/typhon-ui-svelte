@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ALIGNMENT, POSITION, SIZE } from '@qtagon/typhon-ui';
-  import type { Icon } from '@qtagon/typhon-ui/lib/core/components';
+  import type { Icon } from '@qtagon/typhon-ui';
 
   /**
    * Components

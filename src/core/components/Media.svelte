@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Action, Image } from '@qtagon/typhon-ui/lib/core/components';
+  import type { Action, Image } from '@qtagon/typhon-ui';
   import { POSITION, ALIGNMENT } from '@qtagon/typhon-ui';
 
   /**
