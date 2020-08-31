@@ -110,6 +110,7 @@
 
     &:not(.single) {
       grid-gap: 0.625rem;
+      grid-template-columns: repeat(auto-fill, [col] 5.938rem);
       grid-template-rows: repeat(auto-fill, [row] 5.938rem);
     }
 

@@ -14,3 +14,4 @@ export { default as logout } from './logout';
 export { default as logo } from './logo';
 export { default as email } from './email';
 export { default as imdb } from './imdb';
+export { default as git } from './git';

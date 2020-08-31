@@ -26,7 +26,7 @@
 
     & > .option {
       cursor: pointer;
-      color: #8f92a1;
+      color: #ffffff;
       padding: 0.75rem;
       background: rgba(255, 255, 255, 0.2);
       border-radius: 0.75rem;
@@ -39,6 +39,7 @@
       &:focus,
       &:active {
         background: rgba(255, 255, 255, 1);
+        color: #0659fd;
 
         & > :global(svg > path) {
           fill: #0659fd;
@@ -68,7 +69,7 @@
     <div class={`option h4 ${option.classified}`}>
       {#if option.icon}
         <svelte:component this={components.icon} {...option.icon} />
-        {#if title}&nbsp;{/if}
+        {#if option.title}&nbsp;{/if}
       {/if}
       {option.title}
     </div>
