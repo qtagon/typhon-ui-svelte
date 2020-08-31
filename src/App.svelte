@@ -1,6 +1,6 @@
 <script>
   import TyphonUI from './core/components/Typhon/index.svelte';
-  import { dynamic } from './examples/button';
+  import { dynamic } from './examples/image';
 </script>
 
 <style type="text/scss">

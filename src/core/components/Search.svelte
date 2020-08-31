@@ -66,6 +66,7 @@
     margin: 0;
     color: #1e1f20;
     width: 100%;
+    height: 100%;
 
     &::placeholder {
       color: #4c526d;
