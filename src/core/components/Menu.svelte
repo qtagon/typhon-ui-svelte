@@ -1,6 +1,9 @@
 <script lang="ts">
   import type { Option } from '@qtagon/typhon-ui';
 
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+
   /**
    * Components
    */
@@ -11,6 +14,18 @@
 
   export let title: string = '';
   export let options: Array<Option> = [];
+
+  /**
+   * Functions
+   */
+  const emit = (name: string = '', parameters: any) => {
+    if (name) dispatch(name, parameters);
+    return;
+  };
+
+  const onEvent = (option) => {
+    if (option?.event) emit('event', option.event);
+  };
 </script>
 
 <style type="text/scss">
@@ -66,7 +81,9 @@
 {/if}
 <div class={`menu`}>
   {#each options as option (option.identifier)}
-    <div class={`option h4 ${option.classified}`}>
+    <div
+      class={`option h4 ${option.classified}`}
+      on:click={() => onEvent(option)}>
       {#if option.icon}
         <svelte:component this={components.icon} {...option.icon} />
         {#if option.title}&nbsp;{/if}

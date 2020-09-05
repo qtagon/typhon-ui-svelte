@@ -55,6 +55,10 @@
   const onElementEvent = ({ detail }) => {
     emit('element', detail);
   };
+
+  const onEvent = ({ detail }) => {
+    emit('event', detail);
+  };
 </script>
 
 <style type="text/scss">
@@ -86,6 +90,7 @@
                       this={components[component.type]}
                       on:search={onSearchEvent}
                       on:element={onElementEvent}
+                      on:event={onEvent}
                       {...component} />
                   {/each}
                 </Scroller>

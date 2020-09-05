@@ -1,111 +1,53 @@
-import { Typhon, SIZE } from '@qtagon/typhon-ui';
+import { SIZE } from '@qtagon/typhon-ui';
 
-/**
- * Declare TyphonUI
- */
+const setup = (container: any) => {
+  container.setSubject('Action').setClassified('h1');
 
-let dynamic = new Typhon('typhon-ui-svelte')
   /**
-   * Create a column for left menu
+   * Example 1
    */
-  .setColumn('left-menu')
+  container
+    .setSubject('Simple')
+    .setClassified('h3')
+    .setStyle('padding: 2rem 0;');
+
+  const action_e1 = container.setAction('Title');
+
   /**
-   * Create a column for content
+   * Example 2
    */
-  .setColumn('center-content');
+  container
+    .setSubject('With icon')
+    .setClassified('h3')
+    .setStyle('padding: 2rem 0;');
 
-/**
- * Declare content for menu column
- */
-const menu_container = dynamic
-  .onColumn('left-menu')
+  const action_e2 = container.setAction('Title').setIcon('git');
+
   /**
-   * Add class for column
+   * Example 3
    */
-  .setClassified('flex-auto')
+  container
+    .setSubject('With different styles')
+    .setClassified('h3')
+    .setStyle('padding: 2rem 0;');
+
+  container.setAction('Title').setClassified('success').setIcon('git');
+  container.setAction('Title').setClassified('dark').setIcon('git');
+  container
+    .setAction('Title')
+    .setClassified('transparent bordered')
+    .setIcon('git');
+
   /**
-   * Add a row for menu in column
+   * Example 4
    */
-  .setRow('menu')
-  /**
-   * Add a contianer in row for components
-   */
-  .setContainer('menu');
+  container
+    .setSubject('With icon only')
+    .setClassified('h3')
+    .setStyle('padding: 2rem 0;');
 
-/**
- * Add menu component in menu container
- */
-const menu = menu_container.setMenu();
-
-/**
- * Add options for menu
- */
-menu.setOption('Action').setClassified('active');
-menu.setOption('Github').setIcon('git');
-
-/**
- * Declare content for content column
- */
-const content_container = dynamic
-  .onColumn('center-content')
-  /**
-   * Set raw style
-   */
-  .setStyle('padding: 2rem 1rem 0 2rem;')
-  .setRow('content')
-  .setContainer('content')
-  /**
-   * Set scroll
-   */
-  .setScroll(true);
-
-content_container.setSubject('Action').setClassified('h1');
-
-/**
- * Example 1
- */
-content_container
-  .setSubject('Simple')
-  .setClassified('h3')
-  .setStyle('padding: 2rem 0;');
-
-const action_e1 = content_container.setAction('Title');
-
-/**
- * Example 2
- */
-content_container
-  .setSubject('With icon')
-  .setClassified('h3')
-  .setStyle('padding: 2rem 0;');
-
-const action_e2 = content_container.setAction('Title').setIcon('git');
-
-/**
- * Example 3
- */
-content_container
-  .setSubject('With different styles')
-  .setClassified('h3')
-  .setStyle('padding: 2rem 0;');
-
-content_container.setAction('Title').setClassified('success').setIcon('git');
-content_container.setAction('Title').setClassified('dark').setIcon('git');
-content_container
-  .setAction('Title')
-  .setClassified('transparent bordered')
-  .setIcon('git');
-
-/**
- * Example 4
- */
-content_container
-  .setSubject('With icon only')
-  .setClassified('h3')
-  .setStyle('padding: 2rem 0;');
-
-content_container.setAction().setIcon('search');
-content_container.setAction().setIcon('git');
-content_container.setAction().setIcon('check');
-
-export { dynamic };
+  container.setAction().setIcon('search');
+  container.setAction().setIcon('git');
+  container.setAction().setIcon('check');
+};
+export default setup;

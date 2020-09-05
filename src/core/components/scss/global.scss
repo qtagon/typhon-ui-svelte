@@ -55,9 +55,11 @@
       display: grid;
     }
 
-    & > :global(div) {
-      &:not(.menu) {
-        margin-bottom: 1.875rem;
+    & > .scroller-container {
+      & > .scroller {
+        & > :global(div) {
+          margin-bottom: 1.875rem;
+        }
       }
     }
   }
