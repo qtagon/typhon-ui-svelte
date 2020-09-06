@@ -20,6 +20,7 @@
   import Message from '../Message.svelte';
   import Modal from '../Modal.svelte';
   import Scroller from '../Scroller.svelte';
+  import Form from '../Form.svelte';
   const components = {
     media: Media,
     card: Card,
@@ -33,6 +34,7 @@
     message: Message,
     modal: Modal,
     button: Button,
+    form: Form
   };
 
   /**

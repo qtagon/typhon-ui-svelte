@@ -13,6 +13,7 @@
   import notification from './examples/notification';
   import search from './examples/search';
   import tabs from './examples/tabs';
+  import form from './examples/form';
 
   // Index examples
   const examples = {
@@ -26,11 +27,15 @@
     notification,
     search,
     tabs,
+    form
   };
 
   // Setup UI
   let dynamic = new Typhon('main').setColumn('menu').setColumn('content');
   const menu_items = [
+    {
+      title: 'Form',
+    },
     {
       title: 'Action',
     },
@@ -60,7 +65,7 @@
     },
     {
       title: 'Tabs',
-    },
+    }
   ];
 
   /**
@@ -100,13 +105,14 @@
     if (!detail?.parameters) return;
     dynamic.onContainer('content').clear(current);
     dynamic.onContainer('content').clear('subject');
+    dynamic.clear('modal');
     dynamic = dynamic;
 
     const component = detail?.parameters?.title || 'action';
     const name = component.toLowerCase();
     current = name;
 
-    examples[`${name}`](content_container);
+    examples[`${name}`](content_container, dynamic);
     dynamic = dynamic;
   };
 </script>

@@ -13,15 +13,11 @@
   /**
    * Properties
    */
-  export let identifier: string = '';
-  export let type: string = '';
   export let title: string = '';
   export let classified: string = '';
   export let alignment: ALIGNMENT = ALIGNMENT.NONE;
   export let position: POSITION = POSITION.NONE;
-  export let size: SIZE = SIZE.NONE;
   export let style: string = '';
-  export let placeholder: boolean = false;
 
   /**
    *
@@ -58,7 +54,7 @@
   }
 </style>
 
-<div class={`message ${alignment} ${position} ${classified}`}>
+<div class={`message ${alignment} ${position} ${classified}`} style={style}>
   {#if icon}
     <div class="icon">
       <svelte:component this={components.icon} {...icon} />
