@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@qtagon/typhon-ui": "^1.7.2",
-    "node-sass": "^4.14.1",
+    "sass": "^1.43.4",
     "sirv-cli": "^1.0.0"
   }
 }
