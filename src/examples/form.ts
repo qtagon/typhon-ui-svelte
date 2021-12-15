@@ -11,10 +11,7 @@ const setup = (container: any) => {
     .setClassified('h3')
     .setStyle('padding: 2rem 0;');
 
-  const form_e1 = container.setForm(
-    'Create an account',
-    'Signup to continue',
-  );
+  const form_e1 = container.setForm('Create an account', 'Signup to continue');
   form_e1.setInput('Name');
   form_e1.setInput('Email');
   form_e1.setInput('Password');
