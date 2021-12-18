@@ -9,6 +9,24 @@
   export let position: POSITION = POSITION.NONE;
 </script>
 
+<div class={`image ${size} ${alignment} ${classified}`}>
+  <a
+    href={url}
+    class={`${size} ${classified}`}
+    target="_blank"
+    aria-label={title || url}
+    title={title || url}
+    rel="noopener noreferrer"
+  >
+    <img
+      src={url}
+      alt={title || url}
+      class={`${classified} ${size} ${position}`}
+      loading="lazy"
+    />
+  </a>
+</div>
+
 <style type="text/scss">
   @import './scss/size.scss';
   @import './scss/alignment.scss';
@@ -29,15 +47,3 @@
     }
   }
 </style>
-
-<div class={`image ${size} ${alignment} ${classified}`}>
-  <a
-    href={url}
-    class={`${size} ${classified}`}
-    target="_blank"
-    aria-label={title || url}
-    title={title || url}
-    rel="noopener noreferrer">
-    <img src={url} alt={title || url} class={`${classified} ${size} ${position}`} loading="lazy" />
-  </a>
-</div>

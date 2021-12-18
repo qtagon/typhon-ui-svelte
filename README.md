@@ -1,104 +1,97 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# Typhon UI Svelte
 
----
+_User interfaces examples via code 🎨 for **Typhon UI**_
 
-# svelte app
+_**All components are built using [svelte](https://svelte.dev/) !**_
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
+### 🧱 Installation
 
 Install the dependencies...
 
 ```bash
-cd svelte-app
-npm install
+cd typhon-ui-svelte
+yarn
 ```
 
 ...then start [Rollup](https://rollupjs.org):
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
 By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
+---
 
-## Building and running in production mode
+### 🔍️ Usage Example
 
-To create an optimised version of the app:
+**Available App examples, switch in src/main.ts** ⚗️
 
-```bash
-npm run build
+- **MovieDB** (Needs API Key) - _AppMovieDB.svelte_
+- **NewsAPI** (Needs API Key) - _AppNews.svelte_
+- **Typhon UI**'s Components - _AppRenderComponents.svelte_
+
+_This example was handwritten in [svelte](https://svelte.dev/)_
+
+```javascript
+import App from './AppNews.svelte'; /** here */
+
+const app = new App({
+  target: document.body,
+  props: {
+    name: 'world',
+  },
+});
+
+export default app;
 ```
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+---
 
+### 📸 Screenshots
 
-## Single-page app mode
+**NewsAPI**
 
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
+![news](images/news.PNG)
 
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+![news_second](images/news_second.PNG)
 
-```js
-"start": "sirv public --single"
-```
+**MovieDB**
 
-## Using TypeScript
+![movie_db_first](images/movie_db.PNG)
 
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+![movie_db_second](images/movie_db_second.PNG)
 
-```bash
-node scripts/setupTypeScript.js
-```
+**Typhon UIs Components**
 
-Or remove the script via:
+![components](images/components.PNG)
 
-```bash
-rm scripts/setupTypeScript.js
-```
+![components_second](images/components_second.PNG)
 
-## Deploying to the web
+---
 
-### With [Vercel](https://vercel.com)
+### 📄 Open source license
 
-Install `vercel` if you haven't already:
+If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use `typhon-ui-svelte` under the terms of the GPLv3.
 
-```bash
-npm install -g vercel
-```
+### 👥 Contributing
 
-Then, from within your project folder:
+[Bugs](https://github.com/qtagon/typhon-ui-svelte/issues?q=is%3Aopen+is%3Aissue+label%3Abug), [PR](https://github.com/qtagon/typhon-ui-svelte/pulls) are always appreciated.
 
-```bash
-cd public
-vercel deploy --name my-project
-```
+**Typhon UI** is an GPLv3-licensed open source project with its ongoing development made possible thanks to the support by the community, **_substantial contributors may get a GPLv3 free license_**.
 
-### With [surge](https://surge.sh/)
+Flow:
 
-Install `surge` if you haven't already:
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Test your changes to the best of your ability.
+4. Update the documentation to reflect your changes if they add or changes current functionality.
+5. Commit your changes (`git commit -am 'Added some feature'`).
+6. Push to the branch (`git push origin my-new-feature`)
+7. Create new Pull Request
 
-```bash
-npm install -g surge
-```
+### 📝 MIT license
 
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+If you are looking for a GPLv3 free license, contact [me](https://github.com/dorin-musteata).

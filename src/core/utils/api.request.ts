@@ -8,7 +8,7 @@ export default class API {
   }
 
   parameters(params: any = {}) {
-    const object = { ...params, api_key: this.key };
+    const object = { ...params, api_key: this.key, apiKey: this.key };
     return new URLSearchParams(object).toString();
   }
 

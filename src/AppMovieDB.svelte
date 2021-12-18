@@ -4,7 +4,7 @@
   /**
    * Instance of MovieDatabaseAPI requester
    */
-  const MovieAPI = new API(`https://api.themoviedb.org/3/`, `API-KEY`);
+  const MovieAPI = new API(`https://api.themoviedb.org/3/`, `KEY`);
 
   /**
    * Components

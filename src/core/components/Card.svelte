@@ -25,6 +25,7 @@
   export let title: string = '';
   export let subtitle: string = '';
   export let classified: string = '';
+  export let style: string = '';
   export let images: Array<Image> = [];
   export let media: Media;
   export let actions: Array<Action> = [];
@@ -134,7 +135,7 @@
   }
 </style>
 
-<div class={`card ${classified}`}>
+<div class={`card ${classified}`} style={style}>
   {#if placeholder}
     <svelte:component this={components.placeholders.code} />
   {/if}

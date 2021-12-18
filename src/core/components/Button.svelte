@@ -21,6 +21,7 @@
   export let type: string = 'button';
   export let identifier: string = '';
   export let classified: string = '';
+  export let style: string = '';
   export let icon: Icon;
   export let alignment: ALIGNMENT = ALIGNMENT.NONE;
   export let size: SIZE = SIZE.NONE;
@@ -47,20 +48,22 @@
   };
 </script>
 
-<style type="text/scss">
-  @import './scss/button.scss';
-  @import './scss/alignment.scss';
-  @import './scss/fonts.scss';
-</style>
-
 <button
   class={`button ${classified} ${untitled} ${alignment} ${size} display`}
   name={title}
   type="button"
-  on:click={onClick}>
+  on:click={onClick}
+  {style}
+>
   {#if icon}
     <svelte:component this={components.icon} {...icon} />
     {#if title}&nbsp;{/if}
   {/if}
   {title}
 </button>
+
+<style type="text/scss">
+  @import './scss/button.scss';
+  @import './scss/alignment.scss';
+  @import './scss/fonts.scss';
+</style>

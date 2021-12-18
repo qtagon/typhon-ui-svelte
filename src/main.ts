@@ -1,4 +1,4 @@
-import App from './AppMovieDB.svelte';
+import App from './AppNews.svelte';
 
 const app = new App({
   target: document.body,
