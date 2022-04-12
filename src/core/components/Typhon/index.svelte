@@ -80,7 +80,7 @@
   <div class={`column ${column.classified}`} style={column.style}>
     <Scroller wrap={column.scroll}>
       {#each column.getRows() as row (row.identifier)}
-        <div class={`row ${row.classified}`}>
+        <div class={`row ${row.classified}`} style={row.style}>
           <Scroller wrap={row.scroll}>
             {#each row.getContainers() as container (container.identifier)}
               <div

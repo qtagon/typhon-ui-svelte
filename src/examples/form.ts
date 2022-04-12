@@ -15,6 +15,9 @@ const setup = (container: any) => {
   form_e1.setInput('Name');
   form_e1.setInput('Email');
   form_e1.setInput('Password');
+
+
+  console.log(form_e1)
 };
 
 export default setup;

@@ -115,8 +115,6 @@
     examples[`${name}`](content_container, dynamic);
     dynamic = dynamic;
   };
-
-  console.log(dynamic)
 </script>
 
 <main>
